@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Pupas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="crear_cuenta"><u>¿No tienes cuenta? ¡Crea una!</u></string>
+
+    <string name="title">Dialog Title</string>
+    <string name="supporting_text">This is the supporting text for the dialog.</string>
+    <string name="cancel">Cancel</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
+
+    <string-array name="pupusa_types">
+        <item>Frijol con queso</item>
+        <item>Chicharrón</item>
+        <item>Revuelta</item>
+        <item>Queso</item>
+    </string-array>
+</resources>
