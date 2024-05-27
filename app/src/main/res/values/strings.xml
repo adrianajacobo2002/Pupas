@@ -9,6 +9,8 @@
     <string name="cancel">Cancel</string>
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
+    <string name="shared_preferences_file_name">Configs</string>
+    <string name="auth_token_sp_key">auth_token</string>
 
     <string-array name="pupusa_types">
         <item>Frijol con queso</item>
