@@ -18,9 +18,12 @@
         android:padding="40dp">
 
 
-
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="match_parent"
+            android:layout_height="315dp"
+            android:src="@drawable/nointernet" />
     </LinearLayout>
-
 
 
 </LinearLayout>
