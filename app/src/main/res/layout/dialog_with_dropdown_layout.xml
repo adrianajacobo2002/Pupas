@@ -32,8 +32,11 @@
                 android:fontFamily="@font/poppins"
                 android:inputType="none"
                 android:textColor="@color/black"
+
+                android:textColorHighlight="@color/black"
                 android:textSize="14sp"
-                app:dropDownBackgroundTint="@color/white">
+                app:dropDownBackgroundTint="@color/white"
+                app:simpleItemSelectedColor="@color/black">
 
             </AutoCompleteTextView>
 
@@ -64,7 +67,8 @@
                 android:backgroundTint="@color/naranja"
                 android:contentDescription=""
                 app:icon="@drawable/plus_pequeno"
-                app:itemIconTint="@drawable/bottom_nav_color" />
+                app:itemIconTint="@drawable/bottom_nav_color"
+                app:iconTint="@color/white"/>
 
             <EditText
                 android:id="@+id/editTextNumber2"
@@ -73,6 +77,8 @@
                 android:ems="10"
                 android:inputType="number"
                 android:minHeight="48dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
             <Button
@@ -82,7 +88,7 @@
                 android:backgroundTint="@color/naranja"
                 android:contentDescription=""
                 app:icon="@drawable/menos_pequeno"
-                app:itemIconTint="@drawable/bottom_nav_color" />
+                app:iconTint="@color/white" />
         </LinearLayout>
 
 
@@ -95,8 +101,9 @@
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:fontFamily="@font/poppins"
-        android:text="Prueba"
+        android:text="Agregar"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
         app:cornerRadius="12dp" />
 
 

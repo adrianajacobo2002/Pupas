@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
     android:orientation="vertical"
     android:padding="40dp"
     tools:context=".ProfileFragment">
@@ -15,6 +17,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:text="Diego Saravia"
+                    android:text="Antonio Esquivel"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -60,17 +72,28 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:text="milidel@mail.com"
+                    android:text="antonio@mail.com"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>
 
             <Button
-                android:id="@+id/iconButton"
+                android:id="@+id/btnEditData"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                app:iconTint="@color/white"
+                android:backgroundTint="@color/naranja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/lapiz_de_usuario"
+                android:contentDescription="Editar Datos"/>
+
+            <Button
+                android:id="@+id/btnLogOut"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/lapiz_de_usuario" />
+                app:icon="@drawable/logout"
+                android:contentDescription="Cerrar Sesión"/>
 
 
         </LinearLayout>
@@ -137,6 +160,7 @@
                         </LinearLayout>
 
                         <Button
+                            android:id="@+id/btnResume"
                             style="?attr/materialIconButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

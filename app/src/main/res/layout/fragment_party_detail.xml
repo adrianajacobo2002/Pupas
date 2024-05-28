@@ -7,6 +7,7 @@
     android:orientation="horizontal"
     tools:context=".PartyDetailFragment">
 
+
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +15,23 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="40dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btnEditData"
+                style="?attr/materialIconButtonFilledStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/deshacer" />
+        </LinearLayout>
+
 
         <ImageView
             android:id="@+id/imageView5"
@@ -39,7 +57,7 @@
             android:fontFamily="@font/poppins"
             android:paddingStart="50dp"
             android:paddingEnd="50dp"
-            android:text="Diego Saravia"
+            android:text="Antonio Esquivel"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -157,8 +175,10 @@
             android:layout_gravity="bottom|end"
             android:layout_marginTop="40dp"
             android:clickable="true"
+            app:tint="@color/white"
             android:src="@drawable/plus_pequeno"
-            app:backgroundTint="@color/amarillito" />
+            app:backgroundTint="@color/amarillito"
+            app:elevation="6dp" />
     </LinearLayout>
 
 
