@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -45,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new ProfileFragment(), false);
 
                 }
-
-
 
                 return true;
             }

@@ -11,4 +11,9 @@
     <string name="password_label">Contraseña</string>
     <string name="login_btn">Iniciar Sesión</string>
     <string name="email_hint">ejemplo@email.com</string>
+    <string name="create_party_title">¡Vamos a empezar la fiesta!</string>
+    <string name="create_party_text">Configura tu party y reúne a tus amigos para disfrutar de deliciosas pupusas.</string>
+    <string name="create_party_name_input_hint">Nombre de la party</string>
+    <string name="create_party_btn_text">¡Crear party!</string>
+    <string name="create_party_name_required_alert">El nombre es obligatorio para crear una party</string>
 </resources>

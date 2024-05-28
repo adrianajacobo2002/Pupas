@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="¡Vamos a empezar la fiesta!"
+            android:text="@string/create_party_title"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -43,7 +43,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/poppins"
-            android:text="Configura tu party y reúne a tus amigos para disfrutar de deliciosas pupusas."
+            android:text="@string/create_party_text"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="14sp" />
@@ -51,23 +51,25 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de la Party">
+            android:hint="@string/create_party_name_input_hint">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPartyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins" />
+                android:fontFamily="@font/poppins"
+                android:hint="@string/create_party_name_input_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnCreateParty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
-            android:text="Crear Party"
+            android:text="@string/create_party_btn_text"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"

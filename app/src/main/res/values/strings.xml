@@ -21,4 +21,10 @@
     <string name="login_btn">Login</string>
     <string name="email_hint">example@email.com</string>
     <string name="user_sp_key" translatable="false">user</string>
+    <string name="create_party_title">Lets start the party!</string>
+    <string name="create_party_text">Set up your party and gather your friends to enjoy delicious pupusas.</string>
+    <string name="create_party_name_input_hint">Party name</string>
+    <string name="create_party_btn_text">Create party!</string>
+    <string name="create_party_name_required_alert">Name is required to create a party</string>
+    <string name="current_party_code_sp_key" translatable="false">current_party_code</string>
 </resources>

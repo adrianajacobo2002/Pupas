@@ -17,14 +17,18 @@ public class PersistentData {
         this.context = context;
     }
 
-    public String getAuthToken() {
-        return this.sp.getString(this.context.getResources().getString(R.string.auth_token_sp_key), "");
+    public String getResourcesString(int id) {
+        return this.context.getResources().getString(id);
     }
 
-    public void setAuthToken(String token) {
+    public void setString(String name, String value) {
         SharedPreferences.Editor editor = this.sp.edit();
-        editor.putString(this.context.getResources().getString(R.string.auth_token_sp_key), token);
+        editor.putString(name, value);
         editor.apply();
+    }
+
+    public String getString(String name) {
+        return this.sp.getString(name, "");
     }
 
     public void saveObject(String name, Object object) {
@@ -40,5 +44,17 @@ public class PersistentData {
 
         Gson gson = new Gson();
         return gson.fromJson(json, typeOfT);
+    }
+
+    public String getAuthToken() {
+        return this.getString(this.getResourcesString(R.string.auth_token_sp_key));
+    }
+
+    public void setAuthToken(String token) {
+        this.setString(this.getResourcesString(R.string.auth_token_sp_key), token);
+    }
+
+    public void setCurrentPartyCode(String code) {
+        this.setString(this.getResourcesString(R.string.current_party_code_sp_key), code);
     }
 }
