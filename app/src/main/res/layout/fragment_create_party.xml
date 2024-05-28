@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".CreatePartyFragment">
 
@@ -12,12 +13,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:background="@color/white"
         android:backgroundTint="@color/white"
         android:gravity="center"
-        android:orientation="vertical"
-        >
-
+        android:orientation="vertical">
 
 
         <TextView
@@ -31,6 +31,12 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="233dp"
+            android:src="@drawable/joinparty" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,74 +48,17 @@
             android:textColor="#000000"
             android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/editTextText3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins"
-            android:hint="Nombre de la Party"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/editTextText4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins"
-            android:hint="Nombre de la Pupuseria"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:fontFamily="@font/poppins"
-            android:hint="Fecha"
-            android:inputType="datetime|date"
-            android:minHeight="48dp"
-            android:textSize="14sp" />
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Prueba">
+            android:hint="Nombre de la Party">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:fontFamily="@font/poppins" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <!--Pruebita de calendario en edit text -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/date_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/calendar"
-            app:endIconContentDescription="Pruebita de calendario">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-        <!--Finaliza Pruebita de calendario en edit text -->
-
 
 
         <Button
