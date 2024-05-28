@@ -2,6 +2,8 @@ package models;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,6 +20,7 @@ import responses.RegisterResponse;
 public class User {
     public int id;
     public String names;
+    @SerializedName("last_names")
     public String lastNames;
     public String email;
 

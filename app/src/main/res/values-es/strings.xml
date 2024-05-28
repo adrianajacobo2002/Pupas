@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pupas</string>
+    <string name="join_pupas_message">¿No eres parte de Pupas? ¡Únete a la fiesta!</string>
+    <string name="cancel">Cancelar</string>
+    <string name="decline">Declinar</string>
+    <string name="accept">Aceptar</string>
+    <string name="incorrect_credentials">Credenciales incorrectas</string>
+    <string name="all_inputs_required">Todos los campos son obligatorios</string>
+    <string name="email_label">Correo electrónico</string>
+    <string name="password_label">Contraseña</string>
+    <string name="login_btn">Iniciar Sesión</string>
+    <string name="email_hint">ejemplo@email.com</string>
+</resources>
