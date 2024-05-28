@@ -17,12 +17,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:id="@+id/LayoutSecundario"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="40dp">
+
+
 
             <TextView
                 android:id="@+id/textView18"
@@ -60,14 +63,14 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/iconButton"
+                    android:id="@+id/btnEditData"
                     style="?attr/materialIconButtonFilledTonalStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/naranja"
                     android:contentDescription=""
                     app:icon="@drawable/duplicar"
-                    app:itemIconTint="@color/white" />
+                    app:iconTint="@color/white"/>
 
             </LinearLayout>
 
@@ -95,27 +98,39 @@
                     style="?attr/materialCardViewElevatedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/amarillito"
-                    android:backgroundTint="@color/amarillito"
+                    android:background="@color/naranja"
+                    android:backgroundTint="@color/naranja"
                     android:elevation="20dp"
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/textView21"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="Tú"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btnShowDetail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Button" />
+                        <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Tú"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/btnShowDetail"
+                            style="?attr/materialIconButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableTint="@color/white"
+                            android:textColorLink="@color/white"
+                            app:iconTint="@color/white"
+                            app:icon="@drawable/editar" />
+                    </LinearLayout>
+
 
                     <com.google.android.material.divider.MaterialDivider
                         android:layout_width="match_parent"
@@ -161,7 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Tú"
+                        android:text="Nombre Participante"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
@@ -188,54 +203,15 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                style="?attr/materialCardViewElevatedStyle"
+            <Button
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                app:cardElevation="1dp"
-                app:rippleColor="@color/black">
-
-                <LinearLayout
-                    style="?attr/materialCardViewElevatedStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/amarillito"
-                    android:backgroundTint="@color/amarillito"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:id="@+id/textView25"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="Tú"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-
-                    <com.google.android.material.divider.MaterialDivider
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        app:dividerColor="#FFFFFF" />
-
-                    <TextView
-                        android:id="@+id/textView26"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="$00.00"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+                android:fontFamily="@font/poppins"
+                android:text="Terminar Party"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
 
         </LinearLayout>

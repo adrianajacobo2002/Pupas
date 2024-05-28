@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Diego Saravia"
+                android:text="Antonio Esquivel"
                 android:textColor="#000000"
                 android:textSize="30sp" />
 

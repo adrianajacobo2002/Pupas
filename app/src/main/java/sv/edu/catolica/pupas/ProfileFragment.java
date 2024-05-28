@@ -7,14 +7,57 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 
 public class ProfileFragment extends Fragment {
 
+    Button btnEditInfo, btnShowParties;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View vista = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        btnEditInfo = vista.findViewById(R.id.btnEditData);
+
+        btnShowParties = vista.findViewById(R.id.btnResume);
+
+        btnEditInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEditInfo();
+            }
+        });
+
+        btnShowParties.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showResumeParties();
+            }
+        });
+
+        return vista;
     }
+
+    private void showEditInfo(){
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+
+
+        View dialogView = inflater.inflate(R.layout.dialog_edit_profile, null);
+
+        new MaterialAlertDialogBuilder(requireContext())
+                .setView(dialogView)
+                .show();
+    }
+
+    private void showResumeParties(){
+
+    }
+
+
 }

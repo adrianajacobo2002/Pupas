@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EmptyPartyFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Aún no has creado una fiesta"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="match_parent"
+            android:layout_height="318dp"
+            android:src="@drawable/emptyparty" />
+
+        <Button
+            android:id="@+id/createParty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Button"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            tools:text="¿Quieres compartir pupas con tus cheros?" />
+
+        <Button
+            android:id="@+id/joinParty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/amarillito"
+            android:fontFamily="@font/poppins"
+            android:text="Button"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            tools:text="Únete a una party y disfruta de momentos increíbles." />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
