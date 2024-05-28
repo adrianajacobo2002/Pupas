@@ -51,11 +51,6 @@ public class SplashScreen extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (response.code() == 200) {
-                            goToMainScreen();
-                            return;
-                        }
-
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().string());
 
@@ -64,6 +59,8 @@ public class SplashScreen extends AppCompatActivity {
 
                             PersistentData persistentData = new PersistentData(SplashScreen.this);
                             persistentData.saveObject("user", user);
+
+                            goToMainScreen();
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         } catch (IOException e) {
