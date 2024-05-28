@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="40dp">
+        android:padding="30dp">
 
 
         <LinearLayout
@@ -24,12 +24,13 @@
 
 
             <Button
-                android:id="@+id/btnEditData"
+                android:id="@+id/btnClipboard"
                 style="?attr/materialIconButtonFilledStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cornerRadius="12dp"
-                app:icon="@drawable/deshacer" />
+                app:icon="@drawable/deshacer"
+                app:iconTint="@color/white" />
         </LinearLayout>
 
 
@@ -119,6 +120,15 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar"
+                    android:textColor="@color/amarillito" />
+
+
             </TableRow>
 
             <View
@@ -160,6 +170,17 @@
                     android:text="$1.50"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnEditPupusas"
+                    style="?attr/materialIconButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:contentDescription="Editar Pupusas"
+                    android:textAlignment="center"
+                    app:icon="@drawable/editar"
+                    app:iconTint="@color/naranja" />
             </TableRow>
 
             <View
@@ -175,10 +196,10 @@
             android:layout_gravity="bottom|end"
             android:layout_marginTop="40dp"
             android:clickable="true"
-            app:tint="@color/white"
             android:src="@drawable/plus_pequeno"
             app:backgroundTint="@color/amarillito"
-            app:elevation="6dp" />
+            app:elevation="6dp"
+            app:tint="@color/white" />
     </LinearLayout>
 
 

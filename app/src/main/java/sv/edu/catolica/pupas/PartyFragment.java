@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 
 public class PartyFragment extends Fragment {
 
-    Button btnshow;
+    Button btnshow, btnshowMenu;
     LinearLayout pruebita;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,6 +24,7 @@ public class PartyFragment extends Fragment {
 
         btnshow = vista.findViewById(R.id.btnShowDetail);
         pruebita = vista.findViewById(R.id.LayoutSecundario);
+        btnshowMenu = vista.findViewById(R.id.btnMenu);
 
         btnshow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +35,24 @@ public class PartyFragment extends Fragment {
 
                 // Replace whatever is in the fragment_container view with this fragment
                 transaction.replace(R.id.LayoutPrincipal, PartyDetailFragment.class, null);
+
+                // Commit the transaction
+                transaction.commit();
+
+                pruebita.setVisibility(View.GONE);
+            }
+        });
+
+
+        btnshowMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setReorderingAllowed(true);
+
+                // Replace whatever is in the fragment_container view with this fragment
+                transaction.replace(R.id.LayoutPrincipal, PupusasListFragment.class, null);
 
                 // Commit the transaction
                 transaction.commit();
