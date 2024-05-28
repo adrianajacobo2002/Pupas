@@ -16,39 +16,41 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+import helpers.PersistentData;
 
+public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottomNavView);
-        frameLayout = findViewById(R.id.frameLayout);
+        this.bottomNavigationView = findViewById(R.id.bottomNavView);
 
+        PersistentData persistentData = new PersistentData(MainActivity.this);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int currentPartyId = persistentData.getCurrentPartyId();
+                Fragment fragment;
 
                 int itemId = item.getItemId();
-
                 if (itemId == R.id.navHome){
-                    loadFragment(new HomeFragment(), false);
-
+                    fragment = currentPartyId == 0 ? new HomeFragment() : new GoToPartyFragment();
+                    loadFragment(fragment, false);
                 } else if (itemId == R.id.navParty) {
-                    loadFragment(new PartyFragment(), false);
-
+                    fragment = currentPartyId == 0 ? new EmptyPartyFragment() : new PartyFragment();
+                    loadFragment(fragment, false);
                 } else if (itemId == R.id.navProfile) {
                     loadFragment(new ProfileFragment(), false);
-
                 }
-
                 return true;
             }
         });
-        loadFragment(new HomeFragment(), true);
+
+        int currentPartyId = persistentData.getCurrentPartyId();
+        Fragment fragment = currentPartyId == 0 ? new HomeFragment() : new GoToPartyFragment();
+        loadFragment(fragment, true);
     }
 
     private void  loadFragment(Fragment fragment, boolean isAppInitialized){

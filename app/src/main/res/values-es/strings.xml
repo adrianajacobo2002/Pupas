@@ -16,4 +16,10 @@
     <string name="create_party_name_input_hint">Nombre de la party</string>
     <string name="create_party_btn_text">¡Crear party!</string>
     <string name="create_party_name_required_alert">El nombre es obligatorio para crear una party</string>
+    <string name="go_to_party_title">¡Ya estás en una party!</string>
+    <string name="go_to_party_text">Sigue disfrutando con tus cheros de unas deliciosas pupas</string>
+    <string name="go_to_party_btn_text">¡Sigue la fiesta!</string>
+    <string name="empty_party_title">Aún no has creado una fiesta</string>
+    <string name="go_to_create_party_btn_text">¿Quieres compartir pupas con tus cheros?</string>
+    <string name="empty_party_join_party_btn_text">Únete a una party y disfruta de momentos increíbles</string>
 </resources>

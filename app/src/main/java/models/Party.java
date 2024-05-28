@@ -34,8 +34,8 @@ public class Party {
             public void onResponse(@NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
-                    String partyCode = jsonObject.getString("code");
-                    CreatePartyResponse createPartyResponse = new CreatePartyResponse(partyCode);
+                    int partyId = jsonObject.getInt("id");
+                    CreatePartyResponse createPartyResponse = new CreatePartyResponse(partyId);
                     Response<CreatePartyResponse> responseObject =
                             new Response<>(
                                     response.code() == 201,

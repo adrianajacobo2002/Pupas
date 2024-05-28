@@ -78,8 +78,8 @@ public class CreatePartyFragment extends Fragment {
                         @Override
                         public void run() {
                             loaderDialog.dismiss();
-                            persistentData.setCurrentPartyCode(ResponseObject.body.code);
-                            Helper.changeMainPage(getActivity(), R.id.navParty);
+                            persistentData.setCurrentPartyId(ResponseObject.body.id);
+                            Helper.changeSelectedNav(getActivity(), R.id.navParty);
                         }
                     });
                 }

@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import helpers.Helper;
+
 
 public class HomeFragment extends Fragment {
 
-    Button btngenerar, btnjoin;
-    LinearLayout pruebita;
+    private Button btngenerar, btnjoin;
+    private LinearLayout layoutSecundario;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,56 +26,36 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_home, container, false);
 
-
-
-        btngenerar = vista.findViewById(R.id.btnGenerar);
-        pruebita = vista.findViewById(R.id.layoutSecundario);
-
-        btnjoin = vista.findViewById(R.id.btnJoin);
-
-
+        this.btngenerar = vista.findViewById(R.id.btnGenerar);
+        this.btnjoin = vista.findViewById(R.id.btnJoin);
+        this.layoutSecundario = vista.findViewById(R.id.layoutSecundario);
 
         btngenerar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create new fragment and transaction
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setReorderingAllowed(true);
-
-                // Replace whatever is in the fragment_container view with this fragment
-                transaction.replace(R.id.layoutPrincipal, CreatePartyFragment.class, null);
-
-                // Commit the transaction
-                transaction.commit();
-
-                pruebita.setVisibility(View.GONE);
-
-
+                Helper.replaceFragment(
+                        getActivity(),
+                        layoutSecundario,
+                        R.id.layoutPrincipal,
+                        CreatePartyFragment.class,
+                        null
+                );
             }
         });
 
         btnjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setReorderingAllowed(true);
-
-                // Replace whatever is in the fragment_container view with this fragment
-                transaction.replace(R.id.layoutPrincipal, JoinPartyFragment.class, null);
-
-                // Commit the transaction
-                transaction.commit();
-
-                pruebita.setVisibility(View.GONE);
+                Helper.replaceFragment(
+                        getActivity(),
+                        layoutSecundario,
+                        R.id.layoutPrincipal,
+                        JoinPartyFragment.class,
+                        null
+                );
             }
         });
 
-
         return vista;
-
-
-
     }
 }

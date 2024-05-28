@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -29,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/poppins"
-            android:text="¡Party creada con éxito!"
+            android:text="@string/go_to_party_title"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -40,18 +39,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Ahora puedes gestionar todos los detalles aquí."
+            android:text="@string/go_to_party_text"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <Button
+            android:id="@+id/btnGoToParty"
             style="@style/Widget.Material3.Button.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
-            android:text="¡Sigue la fiesta!"
+            android:text="@string/go_to_party_btn_text"
             android:textColor="@color/white"
             app:icon="@drawable/right"
             app:iconTint="@color/white" />

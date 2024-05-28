@@ -26,5 +26,11 @@
     <string name="create_party_name_input_hint">Party name</string>
     <string name="create_party_btn_text">Create party!</string>
     <string name="create_party_name_required_alert">Name is required to create a party</string>
-    <string name="current_party_code_sp_key" translatable="false">current_party_code</string>
+    <string name="current_party_id_sp_key" translatable="false">current_party_id</string>
+    <string name="go_to_party_title">You\'re already in a party!</string>
+    <string name="go_to_party_text">Continue to enjoy with your buddies some delicious pupas</string>
+    <string name="go_to_party_btn_text">Go to the party!</string>
+    <string name="empty_party_title">You haven\'t created a party yet</string>
+    <string name="go_to_create_party_btn_text">Do you want to share pupas with your buddies?</string>
+    <string name="empty_party_join_party_btn_text">Join a party and enjoy amazing moments</string>
 </resources>

@@ -1,9 +1,9 @@
 package responses;
 
 public class CreatePartyResponse {
-    public String code;
+    public int id;
 
-    public CreatePartyResponse(String code) {
-        this.code = code;
+    public CreatePartyResponse(int id) {
+        this.id = id;
     }
 }
