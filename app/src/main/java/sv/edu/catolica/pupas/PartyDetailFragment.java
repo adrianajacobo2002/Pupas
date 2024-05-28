@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -18,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class PartyDetailFragment extends Fragment {
 
 
+    Button editarPupas;
     FloatingActionButton prueba;
 
 
@@ -30,12 +32,20 @@ public class PartyDetailFragment extends Fragment {
 
         prueba = vista.findViewById(R.id.floatingActionButton);
 
+        editarPupas = vista.findViewById(R.id.btnEditPupusas);
 
 
         prueba.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAlertDialog();
+            }
+        });
+
+        editarPupas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEditPupusas();
             }
         });
 
@@ -63,6 +73,19 @@ public class PartyDetailFragment extends Fragment {
     }
 
 
+    private void showEditPupusas() {
+
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+
+
+        View dialogView = inflater.inflate(R.layout.dialog_edit_pupusas, null);
+
+
+
+        new MaterialAlertDialogBuilder(requireContext())
+                .setView(dialogView)
+                .show();
+    }
 
 
 
