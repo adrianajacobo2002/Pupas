@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/naranja"
                 android:contentDescription=""
-                app:icon="@drawable/plus_pequeno"
+                app:icon="@drawable/menos_pequeno"
                 app:itemIconTint="@drawable/bottom_nav_color"
                 app:iconTint="@color/white"/>
 
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/naranja"
                 android:contentDescription=""
-                app:icon="@drawable/menos_pequeno"
+                app:icon="@drawable/plus_pequeno"
                 app:iconTint="@color/white" />
         </LinearLayout>
 

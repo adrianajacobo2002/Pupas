@@ -3,6 +3,8 @@ package sv.edu.catolica.pupas;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -17,6 +20,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class ProfileFragment extends Fragment {
 
     Button btnEditInfo, btnShowParties;
+
+    LinearLayout layoutReemplazar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -26,6 +31,8 @@ public class ProfileFragment extends Fragment {
         btnEditInfo = vista.findViewById(R.id.btnEditData);
 
         btnShowParties = vista.findViewById(R.id.btnResume);
+
+        layoutReemplazar = vista.findViewById(R.id.layoutSecundario);
 
         btnEditInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +44,18 @@ public class ProfileFragment extends Fragment {
         btnShowParties.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showResumeParties();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setReorderingAllowed(true);
+
+                // Replace whatever is in the fragment_container view with this fragment
+                transaction.replace(R.id.layoutPrincipal, PartyHistoryFragment.class, null);
+
+                // Commit the transaction
+                transaction.commit();
+
+                layoutReemplazar.setVisibility(View.GONE);
+
             }
         });
 
@@ -56,7 +74,14 @@ public class ProfileFragment extends Fragment {
     }
 
     private void showResumeParties(){
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
 
+
+        View dialogView = inflater.inflate(R.layout.dialog_edit_profile, null);
+
+        new MaterialAlertDialogBuilder(requireContext())
+                .setView(dialogView)
+                .show();
     }
 
 
