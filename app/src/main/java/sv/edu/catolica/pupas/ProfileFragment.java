@@ -1,5 +1,6 @@
 package sv.edu.catolica.pupas;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,13 +23,17 @@ import models.User;
 public class ProfileFragment extends Fragment {
 
     private TextView tvFullName, tvEmail;
-    private Button btnEditInfo, btnShowParties;
+    private Button btnEditInfo, btnShowParties, btnLogOut;
     private LinearLayout secondaryLayout;
+
+    private PersistentData persistentData;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        this.persistentData = new PersistentData(getActivity());
 
         this.tvFullName = view.findViewById(R.id.tvFullName);
         this.tvEmail = view.findViewById(R.id.tvEmail);
@@ -45,6 +50,7 @@ public class ProfileFragment extends Fragment {
         this.btnEditInfo = view.findViewById(R.id.btnEditData);
         this.btnShowParties = view.findViewById(R.id.btnResume);
         this.secondaryLayout = view.findViewById(R.id.layoutSecundario);
+        this.btnLogOut = view.findViewById(R.id.btnLogOut);
 
         btnEditInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +73,19 @@ public class ProfileFragment extends Fragment {
                 transaction.commit();
 
                 secondaryLayout.setVisibility(View.GONE);
+            }
+        });
+
+        this.btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                persistentData.remove(persistentData.getResourcesString(R.string.auth_token_sp_key));
+                persistentData.remove(persistentData.getResourcesString(R.string.user_sp_key));
+                persistentData.remove(persistentData.getResourcesString(R.string.current_party_id_sp_key));
+
+                Intent intent = new Intent(getContext(), StartActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 

@@ -41,6 +41,12 @@ public class PersistentData {
         return this.sp.getInt(name, 0);
     }
 
+    public void remove(String name) {
+        SharedPreferences.Editor editor = this.sp.edit();
+        editor.remove(name);
+        editor.apply();
+    }
+
     public void saveObject(String name, Object object) {
         Gson gson = new Gson();
         SharedPreferences.Editor editor = this.sp.edit();
