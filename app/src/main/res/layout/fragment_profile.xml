@@ -7,174 +7,176 @@
     android:background="@color/white"
     android:backgroundTint="@color/white"
     android:orientation="vertical"
-    android:padding="40dp"
     tools:context=".ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
 
     <LinearLayout
+        android:id="@+id/layoutPrincipal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
 
         <LinearLayout
+            android:id="@+id/layoutSecundario"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="end"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="40dp">
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="match_parent"
-                android:layout_height="203dp"
-                android:layout_gravity="center"
-                android:src="@drawable/profile" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="203dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/profile" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins"
+                        android:text="Antonio Esquivel"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins"
+                        android:text="antonio@mail.com"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnEditData"
+                    style="?attr/materialIconButtonFilledTonalStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/naranja"
+                    android:contentDescription="Editar Datos"
+                    app:icon="@drawable/lapiz_de_usuario"
+                    app:iconTint="@color/white" />
+
+                <Button
+                    android:id="@+id/btnLogOut"
+                    style="?attr/materialIconButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="Cerrar Sesión"
+                    app:icon="@drawable/logout" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvFullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:text="Antonio Esquivel"
+                    android:text="Parties Recientes"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
-                    android:text="antonio@mail.com"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnEditData"
-                style="?attr/materialIconButtonFilledTonalStyle"
-                app:iconTint="@color/white"
-                android:backgroundTint="@color/naranja"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/lapiz_de_usuario"
-                android:contentDescription="Editar Datos"/>
-
-            <Button
-                android:id="@+id/btnLogOut"
-                style="?attr/materialIconButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/logout"
-                android:contentDescription="Cerrar Sesión"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView41"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="Parties Recientes"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:backgroundTint="@color/white"
-                    android:orientation="vertical"
-                    android:padding="30dp">
-
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        android:orientation="vertical"
+                        android:padding="30dp">
+
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/textView39"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Nombre de la Party"
-                                android:textColor="@color/black"
-                                android:textSize="16dp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/textView42"
-                                android:layout_width="match_parent"
+                                <TextView
+                                    android:id="@+id/textView39"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nombre de la Party"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+
+                                <TextView
+                                    android:id="@+id/textView42"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Creador de la party"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/btnResume"
+                                style="?attr/materialIconButtonStyle"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Creador de la party"
-                                android:textColor="@color/black"
-                                android:textSize="12dp" />
+                                android:gravity="center|center_vertical"
+                                android:textSize="10sp"
+                                app:icon="@drawable/descripcion_general" />
+
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/btnResume"
-                            style="?attr/materialIconButtonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center|center_vertical"
-                            android:textSize="10sp"
-                            app:icon="@drawable/descripcion_general" />
 
                     </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
+            </LinearLayout>
         </LinearLayout>
+
 
     </LinearLayout>
 

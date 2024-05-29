@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class PartyDetailFragment extends Fragment {
 
 
-    Button editarPupas;
+    Button editarPupas, agregarPupas;
     FloatingActionButton prueba;
 
 
@@ -34,6 +34,7 @@ public class PartyDetailFragment extends Fragment {
 
         editarPupas = vista.findViewById(R.id.btnEditPupusas);
 
+        agregarPupas = vista.findViewById(R.id.btnAddPupas);
 
         prueba.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,13 @@ public class PartyDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showEditPupusas();
+            }
+        });
+
+        agregarPupas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialog();
             }
         });
 

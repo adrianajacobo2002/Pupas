@@ -58,7 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:hint="@string/create_party_name_input_hint" />
+                android:hint="@string/create_party_name_input_hint"
+                android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

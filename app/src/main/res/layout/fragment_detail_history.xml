@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".PartyDetailFragment">
-
+    android:orientation="vertical"
+    tools:context=".DetailHistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -16,32 +15,20 @@
         android:orientation="vertical"
         android:padding="30dp">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
 
             <Button
-                android:id="@+id/btnRegresar"
+                android:id="@+id/btnClipboard"
                 style="?attr/materialIconButtonFilledStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:cornerRadius="12dp"
                 app:icon="@drawable/deshacer"
-                app:iconTint="@color/white" />
-
-
-            <Button
-                android:id="@+id/btnRefresh"
-                style="?attr/materialIconButtonFilledStyle"
+                app:iconTint="@color/white"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/amarillito"
-                app:cornerRadius="12dp"
-                app:icon="@drawable/gira_a_la_derecha"
-                app:iconTint="@color/white" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
@@ -63,6 +50,7 @@
 
         <Button
             android:id="@+id/button5"
+            app:cornerRadius="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
@@ -72,8 +60,7 @@
             android:text="Antonio Esquivel"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView30"
@@ -81,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
-            android:text="Explora el resumen de pedidos en tiempo real de tu party pupusera y descubre las delicias que se están disfrutando en este momento."
+            android:text="Explora el resumen de pedidos de tu party pupusera y descubre las delicias que disfrutaron"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -183,16 +170,7 @@
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
-                <Button
-                    android:id="@+id/btnEditPupusas"
-                    style="?attr/materialIconButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="Editar Pupusas"
-                    android:textAlignment="center"
-                    app:icon="@drawable/editar"
-                    app:iconTint="@color/naranja" />
+
             </TableRow>
 
             <View
@@ -201,38 +179,7 @@
 
         </TableLayout>
 
-        <!-- @MiLidel en este apartado he puesto dos tipos de botones, pq el floating ya no me gustó, los dos hacen lo mismo (abren el mismo dialog), ahí el que a ud le guste deja -->
 
-        <!-- Opcion 1: Floating Button -->
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            style="?attr/floatingActionButtonSmallStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginTop="40dp"
-            android:clickable="true"
-            android:src="@drawable/plus_pequeno"
-            app:backgroundTint="@color/amarillito"
-            app:elevation="6dp"
-            app:tint="@color/white" />
-
-        <!-- Opcion 2: Boton normalito -->
-        <Button
-            android:id="@+id/btnAddPupas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/amarillito"
-            android:fontFamily="@font/poppins"
-            android:text="Agregar Pupusas"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:cornerRadius="12dp"
-            app:icon="@drawable/plus_pequeno"
-            app:iconTint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -300,33 +247,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/btnAddBebidas"
-                        style="?attr/materialIconButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:contentDescription="Editar Pupusas"
-                        android:textAlignment="center"
-                        app:icon="@drawable/disco"
-                        app:iconTint="@color/naranja" />
-
-                    <Button
-                        android:id="@+id/btnDeleteBebidas"
-                        style="?attr/materialIconButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:contentDescription="Editar Pupusas"
-                        android:textAlignment="center"
-                        app:icon="@drawable/basura"
-                        app:iconTint="#AD0000" />
-                </LinearLayout>
 
             </LinearLayout>
 
