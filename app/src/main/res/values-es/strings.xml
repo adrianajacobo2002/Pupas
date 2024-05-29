@@ -34,4 +34,9 @@
     <string name="join_party_input_hint">Código de la party</string>
     <string name="join_party_btn">Únete a la party con tus cheros</string>
     <string name="join_party_error">No existe una party con este código</string>
+    <string name="home_hello">¡Hola!</string>
+    <string name="home_are_you_ready">¿Listo para disfrutar y compartir unas deliciosas pupas con tus cheros?</string>
+    <string name="home_create_instructions">Genera un código de una party en Pupas y déjalos unirse para una experiencia pupusera inolvidable.</string>
+    <string name="home_join_instructions">Únete a la party ingresando el código en Pupas y disfruta de momentos increíbles.</string>
+    <string name="home_join_btn">¿Listo para unirte a la fiesta?</string>
 </resources>

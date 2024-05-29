@@ -47,4 +47,9 @@
     <string name="join_party_input_hint">Party code</string>
     <string name="join_party_btn">Join the party with your friends</string>
     <string name="join_party_error">Does not exist any party with this code</string>
+    <string name="home_hello">Hi there!</string>
+    <string name="home_are_you_ready">Ready to enjoy and share some delicious pupas with your friends?</string>
+    <string name="home_create_instructions">Generate a party code at Pupas and let them join for an unforgettable pupusera experience.</string>
+    <string name="home_join_instructions">Join the party by entering the code at Pupas and enjoy incredible moments.</string>
+    <string name="home_join_btn">Ready to join the party?</string>
 </resources>

@@ -30,11 +30,8 @@ public class User {
         this.email = email;
     }
 
-    public User(int id, String names, String lastNames, String email) {
-        this.id = id;
-        this.names = names;
-        this.lastNames = lastNames;
-        this.email = email;
+    public String getFullName() {
+        return String.format("%s %s", this.names, this.lastNames);
     }
 
     public void register(String password, APICallback<responses.Response<RegisterResponse>> cb) {
