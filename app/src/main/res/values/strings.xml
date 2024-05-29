@@ -33,4 +33,13 @@
     <string name="empty_party_title">You haven\'t created a party yet</string>
     <string name="go_to_create_party_btn_text">Do you want to share pupas with your buddies?</string>
     <string name="empty_party_join_party_btn_text">Join a party and enjoy amazing moments</string>
+    <string name="copy_code_message">Ready for some pupas? Join to my party with this code: ${code}</string>
+    <string name="party_code_clipboard_label" translatable="false">Pupas party code</string>
+    <string name="party_code_clipboard_success_message">Code ready to be shared!</string>
+    <string name="you">You</string>
+    <string name="party_title">Party code ready to taste!</string>
+    <string name="party_instruction">Copy and share your code with your friends and enjoy an unforgettable night of pupas.</string>
+    <string name="party_end_party_btn">End party</string>
+    <string name="party_show_prices_btn">Show prices</string>
+    <string name="participant_details_id_arg" translatable="false">id</string>
 </resources>

@@ -22,4 +22,11 @@
     <string name="empty_party_title">Aún no has creado una fiesta</string>
     <string name="go_to_create_party_btn_text">¿Quieres compartir pupas con tus cheros?</string>
     <string name="empty_party_join_party_btn_text">Únete a una party y disfruta de momentos increíbles</string>
+    <string name="copy_code_message">¿Salen pupas? Unite a mi party con este código: ${code}</string>
+    <string name="party_code_clipboard_success_message">¡Código listo para ser compartido!</string>
+    <string name="you">Tú</string>
+    <string name="party_title">¡Código de party listo para saborear!</string>
+    <string name="party_instruction">" Copia y comparte tu código con tus amigos y disfruten de una noche de pupas inolvidable."</string>
+    <string name="party_end_party_btn">Terminar party</string>
+    <string name="party_show_prices_btn">Mostrar precios</string>
 </resources>

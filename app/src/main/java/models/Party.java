@@ -2,11 +2,14 @@ package models;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import interfaces.APICallback;
@@ -18,7 +21,7 @@ import responses.Response;
 public class Party {
     public int id;
     public String code;
-    public User host;
+    public List<Participant> participants;
 
     public static void start(String name, int hostId, APICallback<Response<CreatePartyResponse>> cb) {
         Map<String, Object> body = new HashMap<>();
@@ -46,6 +49,25 @@ public class Party {
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
+            }
+        });
+    }
+
+    public static void fetchParty(int id, APICallback<Response<Party>> cb) {
+        API.get(String.format("/parties/%d", id), new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                cb.onFailure(call, e);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
+                Gson gson = new Gson();
+                String jsonString = response.body().string();
+                Party party = gson.fromJson(jsonString, Party.class);
+                Response<Party> r = new Response(response.code() == 200);
+                r.body = party;
+                cb.onResponse(r, call, response);
             }
         });
     }

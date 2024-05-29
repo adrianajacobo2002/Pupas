@@ -14,7 +14,7 @@ import okhttp3.RequestBody;
 public class API {
     private static final OkHttpClient client = new OkHttpClient();
     private static final MediaType ApplicationJSONType = MediaType.parse("application/json");
-    private static final String host = "https://5a28-179-51-60-153.ngrok-free.app";
+    private static final String host = "https://b657-179-51-60-153.ngrok-free.app";
 
     private API() {}
 
@@ -23,6 +23,14 @@ public class API {
         Request r = new Request.Builder()
                 .url(host + uri)
                 .post(RequestBody.create(bodyJSON, ApplicationJSONType))
+                .build();
+        Call call = client.newCall(r);
+        call.enqueue(cb);
+    }
+
+    public static void get(String uri, Callback cb) {
+        Request r = new Request.Builder()
+                .url(host + uri)
                 .build();
         Call call = client.newCall(r);
         call.enqueue(cb);
