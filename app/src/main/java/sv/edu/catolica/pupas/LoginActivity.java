@@ -104,6 +104,10 @@ public class LoginActivity extends AppCompatActivity {
                             String auth_token = json.getJSONObject("user").getString("auth_token");
                             persistentData.setAuthToken(auth_token);
 
+                            int currentPartyId = json.getInt("currentPartyId");
+                            if (currentPartyId > 0)
+                                persistentData.setCurrentPartyId(currentPartyId);
+
                             goHome();
                         } catch (IOException e) {
                             Snackbar.make(findViewById(R.id.loginLayout), String.format("IOException: %s", e.getMessage()), Snackbar.LENGTH_LONG).show();

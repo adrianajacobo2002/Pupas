@@ -12,11 +12,11 @@
         app:rippleColor="@color/black">
 
         <LinearLayout
+            android:id="@+id/cardContainerLayout"
             style="?attr/materialCardViewElevatedStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/naranja"
-            android:backgroundTint="@color/naranja"
+            android:background="@color/amarillito"
             android:elevation="20dp"
             android:orientation="vertical"
             android:padding="20dp">

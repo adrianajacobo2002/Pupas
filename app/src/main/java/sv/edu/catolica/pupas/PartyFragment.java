@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
+import enums.PARTY_STATES;
 import helpers.Helper;
 import helpers.LoaderDialog;
 import helpers.PersistentData;
@@ -32,21 +33,24 @@ import responses.Response;
 
 public class PartyFragment extends Fragment {
     private EditText etPartyCode;
-    private Button btnShowMenu, btnClipboard;
+    private Button btnShowMenu, btnClipboard, btnCloseParty;
     private LinearLayout secondaryLayout, participantsCardsLayout;
     private List<Participant> participants;
     private PersistentData persistentData;
+    private Participant me;
+    private LoaderDialog loaderDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_party, container, false);
 
+        this.persistentData = new PersistentData(getActivity());
+        this.loaderDialog = new LoaderDialog(getActivity());
+
         this.loadControls(view);
         this.loadListeners();
         this.loadPartyInformation();
-
-        this.persistentData = new PersistentData(getActivity());
 
         return view;
     }
@@ -54,8 +58,7 @@ public class PartyFragment extends Fragment {
     public void loadPartyInformation() {
         final Activity activity = getActivity();
 
-        LoaderDialog loaderDialog = new LoaderDialog(activity);
-        loaderDialog.start();
+        this.loaderDialog.start();
 
         try {
             PersistentData persistentData = new PersistentData(activity);
@@ -64,26 +67,22 @@ public class PartyFragment extends Fragment {
             Party.fetchParty(id, new APICallback<Response<Party>>() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            loaderDialog.dismiss();
-                            Toast.makeText(activity, "Failed getting party information", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    loaderDialog.dismiss();
+                    Toast.makeText(activity, "Failed getting party information", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onResponse(Response<Party> ResponseObject, @NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            loaderDialog.dismiss();
-                            etPartyCode.setText(ResponseObject.body.code);
-                            participants = ResponseObject.body.participants;
-                            loadParticipants();
-                        }
-                    });
+                    loaderDialog.dismiss();
+                    Party party = ResponseObject.body;
+                    if (party.state == PARTY_STATES.CLOSED) {
+                        closeLocalParty();
+                        return;
+                    }
+
+                    etPartyCode.setText(party.code);
+                    participants = ResponseObject.body.participants;
+                    loadParticipants();
                 }
             });
         } catch (Exception e) {
@@ -101,11 +100,22 @@ public class PartyFragment extends Fragment {
                         ? this.persistentData.getResourcesString(R.string.you)
                         : String.format("%s %s", participant.names, participant.lastNames);
                 ParticipantCard participantCard = getParticipantCard(name, participant);
-                this.participantsCardsLayout.addView(participantCard);
-            }
+                if (participant.isHost)
+                    participantCard.makeHostCard();
 
+                if (participant.userId == loggedUser.id)
+                    this.me = participant;
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        participantsCardsLayout.addView(participantCard);
+                    }
+                });
+            }
+            this.permissions();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -138,6 +148,7 @@ public class PartyFragment extends Fragment {
         this.secondaryLayout = view.findViewById(R.id.LayoutSecundario);
         this.btnClipboard = view.findViewById(R.id.btnClipboard);
         this.participantsCardsLayout = view.findViewById(R.id.participantsCardsLayout);
+        this.btnCloseParty = view.findViewById(R.id.btnCloseParty);
     }
 
     public void loadListeners() {
@@ -166,5 +177,52 @@ public class PartyFragment extends Fragment {
                 Toast.makeText(getContext(), getString(R.string.party_code_clipboard_success_message), Toast.LENGTH_SHORT).show();
             }
         });
+
+        this.btnCloseParty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loaderDialog.start();
+                Party party = new Party(persistentData.getCurrentPartyId());
+                party.finish(new APICallback<Response>() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        loaderDialog.dismiss();
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(Response ResponseObject, @NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
+                        try {
+                            loaderDialog.dismiss();
+                            boolean closed = ResponseObject.success;
+                            if (!closed) {
+                                Toast.makeText(getContext(), "Error trying to close a party", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    closeLocalParty();
+                                    Helper.changeSelectedNav(getActivity(), R.id.navHome);
+                                }
+                            });
+                        } catch (Exception e) {
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void permissions() {
+        if (!this.me.isHost)
+            this.btnCloseParty.setVisibility(View.GONE);
+    }
+
+    public void closeLocalParty() {
+        this.persistentData.setCurrentPartyId(0);
+        Helper.changeSelectedNav(getActivity(), R.id.navParty);
     }
 }

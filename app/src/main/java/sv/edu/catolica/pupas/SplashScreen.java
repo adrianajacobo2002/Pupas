@@ -55,10 +55,12 @@ public class SplashScreen extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response.body().string());
 
                             Gson gson = new Gson();
-                            User user = gson.fromJson(jsonObject.toString(), User.class);
+                            User user = gson.fromJson(jsonObject.getString("user"), User.class);
+                            int currentPartyId = jsonObject.getInt("currentPartyId");
 
                             PersistentData persistentData = new PersistentData(SplashScreen.this);
                             persistentData.saveObject("user", user);
+                            persistentData.setCurrentPartyId(currentPartyId);
 
                             goToMainScreen();
                         } catch (JSONException e) {

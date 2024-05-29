@@ -42,4 +42,9 @@
     <string name="party_end_party_btn">End party</string>
     <string name="party_show_prices_btn">Show prices</string>
     <string name="participant_details_id_arg" translatable="false">id</string>
+    <string name="join_party_title">The party is about to begin!</string>
+    <string name="join_party_instructions">Enter the party code and join your friends to share authentic flavors and unforgettable moments.</string>
+    <string name="join_party_input_hint">Party code</string>
+    <string name="join_party_btn">Join the party with your friends</string>
+    <string name="join_party_error">Does not exist any party with this code</string>
 </resources>
