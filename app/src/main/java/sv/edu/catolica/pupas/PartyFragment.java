@@ -129,7 +129,7 @@ public class PartyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle args = new Bundle();
-                args.putInt(persistentData.getResourcesString(R.string.participant_details_id_arg), participant.userId);
+                args.putInt(persistentData.getResourcesString(R.string.participant_details_id_arg), participant.id);
                 Helper.replaceFragment(
                         getActivity(),
                         secondaryLayout,

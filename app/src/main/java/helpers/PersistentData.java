@@ -6,6 +6,10 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
+import java.util.Arrays;
+import java.util.List;
+
+import models.Pupusa;
 import sv.edu.catolica.pupas.R;
 
 public class PersistentData {
@@ -76,5 +80,19 @@ public class PersistentData {
 
     public void setCurrentPartyId(int id) {
         this.setInt(this.getResourcesString(R.string.current_party_id_sp_key), id);
+    }
+
+    public Double getPupusaPrice(int id) {
+        try {
+            Pupusa[] pupusasArr = this.getObject("defaultPupusas", Pupusa[].class);
+            List<Pupusa> pupusas = Arrays.asList(pupusasArr);
+            Pupusa pupusa = pupusas.stream()
+                    .filter(p -> p.id == id)
+                    .findAny()
+                    .orElse(null);
+            return pupusa.price;
+        } catch (Exception e) {
+            return Double.valueOf(0);
+        }
     }
 }

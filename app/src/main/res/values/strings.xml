@@ -52,4 +52,5 @@
     <string name="home_create_instructions">Generate a party code at Pupas and let them join for an unforgettable pupusera experience.</string>
     <string name="home_join_instructions">Join the party by entering the code at Pupas and enjoy incredible moments.</string>
     <string name="home_join_btn">Ready to join the party?</string>
+    <string name="detail_counter_amount">Amount</string>
 </resources>

@@ -39,4 +39,5 @@
     <string name="home_create_instructions">Genera un código de una party en Pupas y déjalos unirse para una experiencia pupusera inolvidable.</string>
     <string name="home_join_instructions">Únete a la party ingresando el código en Pupas y disfruta de momentos increíbles.</string>
     <string name="home_join_btn">¿Listo para unirte a la fiesta?</string>
+    <string name="detail_counter_amount">Cantidad</string>
 </resources>

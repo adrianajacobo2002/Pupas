@@ -49,7 +49,7 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btnNombreDisplay"
             app:cornerRadius="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

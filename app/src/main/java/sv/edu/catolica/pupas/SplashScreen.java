@@ -18,21 +18,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import helpers.PersistentData;
+import interfaces.APICallback;
 import models.API;
+import models.Pupusa;
 import models.User;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 public class SplashScreen extends AppCompatActivity {
+    PersistentData persistentData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        PersistentData persistentData = new PersistentData(this);
-        String authToken = persistentData.getAuthToken();
+        this.persistentData = new PersistentData(this);
+        String authToken = this.persistentData.getAuthToken();
         if (authToken.isEmpty()) {
             goToLoginRegisterScreen();
             return;
@@ -62,12 +65,32 @@ public class SplashScreen extends AppCompatActivity {
                             persistentData.saveObject("user", user);
                             persistentData.setCurrentPartyId(currentPartyId);
 
-                            goToMainScreen();
+                            populatePupusas();
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                    }
+                });
+            }
+        });
+    }
+
+    public void populatePupusas() {
+        Pupusa.fetchDefaults(new APICallback<Pupusa[]>() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Pupusa[] ResponseObject, @NonNull Call call, @NonNull Response response) throws IOException {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        persistentData.saveObject("defaultPupusas", ResponseObject);
+                        goToMainScreen();
                     }
                 });
             }
