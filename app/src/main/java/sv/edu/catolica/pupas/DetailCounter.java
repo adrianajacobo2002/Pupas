@@ -51,4 +51,8 @@ public class DetailCounter extends LinearLayout {
     public int getCounterValue () {
         return Integer.parseInt(this.counter.getText().toString());
     }
+
+    public void setCounterValue (int value) {
+        this.counter.setText(String.valueOf(value));
+    }
 }

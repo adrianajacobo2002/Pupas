@@ -4,8 +4,14 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import interfaces.APICallback;
@@ -56,6 +62,31 @@ public class ParticipantDetail {
             @Override
             public void onResponse(@NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
                 cb.onResponse(new Response(response.code() == 201), call, response);
+            }
+        });
+    }
+
+    public static void updatePupusa(int partyId, int participantId, UpdateDetailBody pupusas, APICallback<Response> cb) {
+        String uri = String.format("/parties/%d/participant/%d", partyId, participantId);
+        API.patch(uri, pupusas, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                cb.onFailure(call, e);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
+                Response r = new Response(response.code() == 200);
+                if (!r.success) {
+                    try {
+                        String jsonString = response.body().string();
+                        String message = new JSONObject(jsonString).getString("message");
+                        r.message = message;
+                    } catch (JSONException e) {
+                        r.message = e.getMessage();
+                    }
+                }
+                cb.onResponse(r, call, response);
             }
         });
     }

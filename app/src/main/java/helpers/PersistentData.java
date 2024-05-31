@@ -95,4 +95,18 @@ public class PersistentData {
             return Double.valueOf(0);
         }
     }
+
+    public Pupusa getPupusaByName(String name) {
+        try {
+            Pupusa[] pupusasArr = this.getObject("defaultPupusas", Pupusa[].class);
+            List<Pupusa> pupusas = Arrays.asList(pupusasArr);
+            Pupusa pupusa = pupusas.stream()
+                    .filter(p -> p.name.equals(name))
+                    .findAny()
+                    .orElse(null);
+            return pupusa;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

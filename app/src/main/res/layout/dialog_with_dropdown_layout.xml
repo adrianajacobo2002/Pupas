@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:hint="Tipo de pupusa"
+            android:hint="@string/choose_your_pupusa"
             app:counterTextColor="@color/black"
             app:helperTextTextColor="@color/black">
 
@@ -44,8 +44,8 @@
 
         <sv.edu.catolica.pupas.DetailCounter
             android:id="@+id/detailCounter"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -56,7 +56,7 @@
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:fontFamily="@font/poppins"
-        android:text="Agregar"
+        android:text="@string/add"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:cornerRadius="12dp" />

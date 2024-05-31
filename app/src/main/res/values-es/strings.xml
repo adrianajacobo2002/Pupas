@@ -40,4 +40,7 @@
     <string name="home_join_instructions">Únete a la party ingresando el código en Pupas y disfruta de momentos increíbles.</string>
     <string name="home_join_btn">¿Listo para unirte a la fiesta?</string>
     <string name="detail_counter_amount">Cantidad</string>
+    <string name="add">Agregar</string>
+    <string name="choose_your_pupusa">Elige tu pupusa</string>
+    <string name="save_changes">Guardar cambios</string>
 </resources>

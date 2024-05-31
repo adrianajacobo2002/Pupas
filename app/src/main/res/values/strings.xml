@@ -53,4 +53,7 @@
     <string name="home_join_instructions">Join the party by entering the code at Pupas and enjoy incredible moments.</string>
     <string name="home_join_btn">Ready to join the party?</string>
     <string name="detail_counter_amount">Amount</string>
+    <string name="add">Add</string>
+    <string name="choose_your_pupusa">Choose your pupusa</string>
+    <string name="save_changes">Save changes</string>
 </resources>

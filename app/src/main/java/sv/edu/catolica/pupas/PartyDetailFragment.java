@@ -42,6 +42,7 @@ import responses.ParticipantDetailResponse;
 import responses.Response;
 
 public class PartyDetailFragment extends Fragment {
+    private int participantId;
     private TableLayout tblDetails;
     private Button btnNombreDisplay;
     private FloatingActionButton btnAddPupusas;
@@ -58,6 +59,7 @@ public class PartyDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_party_detail, container, false);
         Activity activity = getActivity();
 
+        this.participantId = getArguments().getInt("id");
         this.persistentData = new PersistentData(activity);
         this.loaderDialog = new LoaderDialog(activity);
 
@@ -71,8 +73,7 @@ public class PartyDetailFragment extends Fragment {
     public void loadDetails() {
         this.loaderDialog.start();
         int partyId = this.persistentData.getCurrentPartyId();
-        int participantId = getArguments().getInt("id");
-        ParticipantDetail.fetch(partyId, participantId, new APICallback<Response<ParticipantDetailResponse>>() {
+        ParticipantDetail.fetch(partyId, this.participantId, new APICallback<Response<ParticipantDetailResponse>>() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
@@ -103,25 +104,22 @@ public class PartyDetailFragment extends Fragment {
             this.tblDetails.removeViewAt(i);
 
         for (ParticipantDetail pupusa : this.participantDetailResponse.pupusas) {
-            TableRow tableRow = new TableRow(getActivity());
-            tableRow.setPadding(10, 10, 10, 10);
-            tableRow.setGravity(Gravity.CENTER);
-
-            TextView tipo = makeColumn(pupusa.type);
-            TextView cantidad = makeColumn(String.valueOf(pupusa.amount));
-            TextView total = makeColumn(String.format("$%s", String.valueOf(pupusa.total)));
+            List<View> columns = new ArrayList<>();
+            columns.add(makeColumn(pupusa.type));
+            columns.add(makeColumn(String.valueOf(pupusa.amount)));
+            columns.add(makeColumn(String.format("$%.2f", pupusa.total)));
             EditDetailBtn btnEdit = new EditDetailBtn(getActivity());
             btnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showEditPupusas();
+                    showEditPupusas(pupusa);
                 }
             });
+            if (!this.hasPermissions())
+                btnEdit.setVisibility(View.INVISIBLE);
+            columns.add(btnEdit);
 
-            tableRow.addView(tipo);
-            tableRow.addView(cantidad);
-            tableRow.addView(total);
-            tableRow.addView(btnEdit);
+            TableRow tableRow = makeTableRow(columns);
 
             ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 5);
             View divider = new View(getActivity());
@@ -143,6 +141,17 @@ public class PartyDetailFragment extends Fragment {
         return column;
     }
 
+    private TableRow makeTableRow(List<View> columns) {
+        TableRow tableRow = new TableRow(getActivity());
+        tableRow.setPadding(10, 10, 10, 10);
+        tableRow.setGravity(Gravity.CENTER);
+
+        for (View column: columns)
+            tableRow.addView(column);
+
+        return tableRow;
+    }
+
     private void loadControllers(View view) {
         this.btnAddPupusas = view.findViewById(R.id.btnAddPupusas);
         this.btnNombreDisplay = view.findViewById(R.id.btnNombreDisplay);
@@ -159,7 +168,6 @@ public class PartyDetailFragment extends Fragment {
     }
 
     private void showAlertDialog() {
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
         DialogWithDropdownLayout dialogView = new DialogWithDropdownLayout(getContext());
 
         try {
@@ -240,20 +248,36 @@ public class PartyDetailFragment extends Fragment {
         });
     }
 
-    private void showEditPupusas() {
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_edit_pupusas, null);
-        new MaterialAlertDialogBuilder(requireContext())
-                .setView(dialogView)
-                .show();
+    private void showEditPupusas(ParticipantDetail pupusa) {
+        EditPupusasForm editPupusasForm = new EditPupusasForm(
+                getActivity(),
+                pupusa,
+                this.participantId,
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        loadDetails();
+                    }
+                }
+        );
+        editPupusasForm.show();
+    }
+
+    private boolean hasPermissions() {
+        User loggedUser = null;
+        try {
+            loggedUser = this.persistentData.getObject("user", User.class);
+            String loggedUserName = loggedUser.getFullName();
+            String participantName = this.participantDetailResponse.name;
+            return loggedUserName.equals(participantName);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void loadPermissions() {
         try {
-            User loggedUser = this.persistentData.getObject("user", User.class);
-            String loggedUserName = loggedUser.getFullName();
-            String participantName = this.participantDetailResponse.name;
-            if (!loggedUserName.equals(participantName)) {
+            if (!this.hasPermissions()) {
                 this.btnAddPupusas.setVisibility(View.GONE);
             }
 

@@ -67,8 +67,13 @@ public class PartyFragment extends Fragment {
             Party.fetchParty(id, new APICallback<Response<Party>>() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    loaderDialog.dismiss();
-                    Toast.makeText(activity, "Failed getting party information", Toast.LENGTH_SHORT).show();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            loaderDialog.dismiss();
+                            Toast.makeText(activity, "Failed getting party information", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
 
                 @Override
@@ -186,30 +191,40 @@ public class PartyFragment extends Fragment {
                 party.finish(new APICallback<Response>() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                        loaderDialog.dismiss();
-                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                loaderDialog.dismiss();
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
 
                     @Override
                     public void onResponse(Response ResponseObject, @NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
-                        try {
-                            loaderDialog.dismiss();
-                            boolean closed = ResponseObject.success;
-                            if (!closed) {
-                                Toast.makeText(getContext(), "Error trying to close a party", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    loaderDialog.dismiss();
+                                    boolean closed = ResponseObject.success;
+                                    if (!closed) {
+                                        Toast.makeText(getContext(), "Error trying to close a party", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
 
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    closeLocalParty();
-                                    Helper.changeSelectedNav(getActivity(), R.id.navHome);
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            closeLocalParty();
+                                            Helper.changeSelectedNav(getActivity(), R.id.navHome);
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-                            });
-                        } catch (Exception e) {
-                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                            }
+                        });
                     }
                 });
             }
