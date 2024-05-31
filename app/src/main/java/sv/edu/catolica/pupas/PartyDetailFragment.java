@@ -14,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,6 +33,7 @@ import helpers.Helper;
 import helpers.LoaderDialog;
 import helpers.PersistentData;
 import interfaces.APICallback;
+import models.Participant;
 import models.ParticipantDetail;
 import models.Pupusa;
 import models.User;
@@ -45,8 +44,9 @@ import responses.Response;
 public class PartyDetailFragment extends Fragment {
     private int participantId;
     private TableLayout tblDetails;
-    private Button btnNombreDisplay, btnDetailBack;
+    private Button btnNombreDisplay, btnDetailBack, btnAddBebida, btnDeleteBebida;
     private FloatingActionButton btnAddPupusas;
+    private EditText etDrinkPrice;
     private PersistentData persistentData;
     private LoaderDialog loaderDialog;
     private ParticipantDetailResponse participantDetailResponse;
@@ -99,6 +99,7 @@ public class PartyDetailFragment extends Fragment {
 
     private void fillScreen() {
         this.btnNombreDisplay.setText(this.participantDetailResponse.name);
+        this.etDrinkPrice.setText(this.participantDetailResponse.drink.toString());
 
         int currentDetailsCount = this.tblDetails.getChildCount() - 2;
         for (int i = currentDetailsCount; i > 0; i--)
@@ -158,6 +159,9 @@ public class PartyDetailFragment extends Fragment {
         this.btnNombreDisplay = view.findViewById(R.id.btnNombreDisplay);
         this.tblDetails = view.findViewById(R.id.tblDetailsContainer);
         this.btnDetailBack = view.findViewById(R.id.btnDetailBack);
+        this.etDrinkPrice = view.findViewById(R.id.etDrinkPrice);
+        this.btnAddBebida = view.findViewById(R.id.btnAddBebidas);
+        this.btnDeleteBebida = view.findViewById(R.id.btnDeleteBebidas);
     }
 
     private void loadListeners() {
@@ -171,6 +175,24 @@ public class PartyDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Helper.changeSelectedNav(getActivity(), R.id.navParty);
+            }
+        });
+        this.btnAddBebida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String etDrinkPriveValue = etDrinkPrice.getText().toString();
+                Double price = Double.valueOf(
+                        etDrinkPriveValue.isEmpty()
+                        ? "0"
+                        : etDrinkPriveValue);
+                updateDrink(price);
+            }
+        });
+        this.btnDeleteBebida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Double price = Double.valueOf(0);
+                updateDrink(price);
             }
         });
     }
@@ -287,11 +309,64 @@ public class PartyDetailFragment extends Fragment {
         try {
             if (!this.hasPermissions()) {
                 this.btnAddPupusas.setVisibility(View.GONE);
+                this.btnAddBebida.setVisibility(View.GONE);
+                this.btnDeleteBebida.setVisibility(View.GONE);
+                this.etDrinkPrice.setEnabled(false);
             }
 
             loaderDialog.dismiss();
         } catch (Exception e) {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void updateDrink(Double price) {
+        Double priceFixed = Double.valueOf(String.format("%.2f", price));
+        if (priceFixed >= 100) {
+            String priceExceededMessage = this.persistentData.getResourcesString(R.string.participant_details_drink_price_exceeded);
+            Toast.makeText(getContext(), priceExceededMessage, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        this.loaderDialog.start();
+        Helper.hideKeyboard(getActivity());
+        this.etDrinkPrice.clearFocus();
+        int partyId = this.persistentData.getCurrentPartyId();
+        Participant.updateDrink(
+                partyId,
+                this.participantId,
+                priceFixed,
+                new APICallback<Response>() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                loaderDialog.dismiss();
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onResponse(Response ResponseObject, @NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                loaderDialog.dismiss();
+                                if (!ResponseObject.success) {
+                                    String message = persistentData.getResourcesString(R.string.participant_details_drink_error);
+                                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                if (!price.toString().equals(priceFixed.toString())) {
+                                    etDrinkPrice.setText(priceFixed.toString());
+                                }
+                            }
+                        });
+                    }
+                }
+        );
     }
 }

@@ -56,4 +56,6 @@
     <string name="add">Add</string>
     <string name="choose_your_pupusa">Choose your pupusa</string>
     <string name="save_changes">Save changes</string>
+    <string name="participant_details_drink_error">Error trying to update drink price</string>
+    <string name="participant_details_drink_price_exceeded">Don\'t you think is too much?</string>
 </resources>
