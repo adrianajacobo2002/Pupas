@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
-            android:text="Explora el resumen de pedidos en tiempo real de tu party pupusera y descubre las delicias que se están disfrutando en este momento."
+            android:text="@string/participant_details_description"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -107,7 +107,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
-                    android:text="Tipo Pupusa"
+                    android:text="@string/participant_details_pupusa_type"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -118,7 +118,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
-                    android:text="Cantidad"
+                    android:text="@string/participant_details_amount"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -129,7 +129,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
-                    android:text="Total"
+                    android:text="@string/total"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -182,7 +182,7 @@
                 android:paddingStart="15dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Bebida"
+                android:text="@string/participant_details_drink"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -201,7 +201,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="$00.00">
+                    android:hint="$">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etDrinkPrice"
@@ -209,7 +209,6 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/poppins"
                         android:inputType="number|numberDecimal"
-                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 

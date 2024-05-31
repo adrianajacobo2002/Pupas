@@ -58,4 +58,9 @@
     <string name="save_changes">Save changes</string>
     <string name="participant_details_drink_error">Error trying to update drink price</string>
     <string name="participant_details_drink_price_exceeded">Don\'t you think is too much?</string>
+    <string name="participant_details_description">Explore your pupusera party\'s real-time order summary and discover the delicacies that are currently being enjoyed.</string>
+    <string name="total">Total</string>
+    <string name="participant_details_pupusa_type">Pupusa type</string>
+    <string name="participant_details_amount">Amount</string>
+    <string name="participant_details_drink">Drink</string>
 </resources>

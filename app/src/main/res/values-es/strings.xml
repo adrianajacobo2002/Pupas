@@ -45,4 +45,9 @@
     <string name="save_changes">Guardar cambios</string>
     <string name="participant_details_drink_error">Error al actualizar el precio de la bebida</string>
     <string name="participant_details_drink_price_exceeded">¿No crees que es mucho?</string>
+    <string name="participant_details_description">Explora el resumen de pedidos en tiempo real de tu party pupusera y descubre las delicias que se están disfrutando en este momento.</string>
+    <string name="total">Total</string>
+    <string name="participant_details_pupusa_type">Tipo de pupusa</string>
+    <string name="participant_details_amount">Cantidad</string>
+    <string name="participant_details_drink">Bebida</string>
 </resources>
