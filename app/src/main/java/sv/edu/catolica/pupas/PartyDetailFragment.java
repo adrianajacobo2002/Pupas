@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import helpers.Helper;
 import helpers.LoaderDialog;
 import helpers.PersistentData;
 import interfaces.APICallback;
@@ -44,7 +45,7 @@ import responses.Response;
 public class PartyDetailFragment extends Fragment {
     private int participantId;
     private TableLayout tblDetails;
-    private Button btnNombreDisplay;
+    private Button btnNombreDisplay, btnDetailBack;
     private FloatingActionButton btnAddPupusas;
     private PersistentData persistentData;
     private LoaderDialog loaderDialog;
@@ -156,6 +157,7 @@ public class PartyDetailFragment extends Fragment {
         this.btnAddPupusas = view.findViewById(R.id.btnAddPupusas);
         this.btnNombreDisplay = view.findViewById(R.id.btnNombreDisplay);
         this.tblDetails = view.findViewById(R.id.tblDetailsContainer);
+        this.btnDetailBack = view.findViewById(R.id.btnDetailBack);
     }
 
     private void loadListeners() {
@@ -163,6 +165,12 @@ public class PartyDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showAlertDialog();
+            }
+        });
+        this.btnDetailBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Helper.changeSelectedNav(getActivity(), R.id.navParty);
             }
         });
     }

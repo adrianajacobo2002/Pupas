@@ -78,16 +78,21 @@ public class PartyFragment extends Fragment {
 
                 @Override
                 public void onResponse(Response<Party> ResponseObject, @NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
-                    loaderDialog.dismiss();
-                    Party party = ResponseObject.body;
-                    if (party.state == PARTY_STATES.CLOSED) {
-                        closeLocalParty();
-                        return;
-                    }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            loaderDialog.dismiss();
+                            Party party = ResponseObject.body;
+                            if (party.state == PARTY_STATES.CLOSED) {
+                                closeLocalParty();
+                                return;
+                            }
 
-                    etPartyCode.setText(party.code);
-                    participants = ResponseObject.body.participants;
-                    loadParticipants();
+                            etPartyCode.setText(party.code);
+                            participants = ResponseObject.body.participants;
+                            loadParticipants();
+                        }
+                    });
                 }
             });
         } catch (Exception e) {
@@ -111,12 +116,7 @@ public class PartyFragment extends Fragment {
                 if (participant.userId == loggedUser.id)
                     this.me = participant;
 
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        participantsCardsLayout.addView(participantCard);
-                    }
-                });
+                this.participantsCardsLayout.addView(participantCard);
             }
             this.permissions();
         } catch (Exception e) {
