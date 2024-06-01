@@ -14,74 +14,74 @@
         android:layout_gravity="center"
         android:gravity="center|center_horizontal|center_vertical"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="30dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView28"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/join_party_title"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView28"
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/createparty" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/join_party_instructions"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:hint="@string/join_party_input_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPartyCode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/poppins"
-                android:text="@string/join_party_title"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@drawable/createparty" />
-
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/join_party_instructions"
-                android:textAlignment="center"
-                android:textColor="#000000"
                 android:textSize="14sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:gravity="center"
-                android:hint="@string/join_party_input_hint">
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPartyCode"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPartyCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btnJoinParty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/join_party_btn"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="12dp" />
 
-
-            <Button
-                android:id="@+id/btnJoinParty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="@string/join_party_btn"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:cornerRadius="12dp" />
-
-
-        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

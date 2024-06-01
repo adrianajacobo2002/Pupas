@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ScrollView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -34,18 +35,16 @@ public class Helper {
         bottomNavigationView.setSelectedItemId(itemId);
     }
 
-    public static void replaceFragment(FragmentActivity activity, ViewGroup currentLayout, int mainLayoutId, Class<? extends Fragment> fragmentClass, Bundle args) {
+    public static void replaceFragment(FragmentActivity activity, Class<? extends Fragment> newFragmentLayouClass, Bundle args) {
         // Create new fragment and transaction
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setReorderingAllowed(true);
 
         // Replace whatever is in the fragment_container view with this fragment
-        transaction.replace(mainLayoutId, fragmentClass, args);
+        transaction.replace(R.id.screenBody, newFragmentLayouClass, args);
 
         // Commit the transaction
         transaction.commit();
-
-        currentLayout.setVisibility(View.GONE);
     }
 }

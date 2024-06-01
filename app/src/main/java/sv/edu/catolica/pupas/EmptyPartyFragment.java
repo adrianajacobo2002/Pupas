@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import helpers.Helper;
 
@@ -29,8 +27,6 @@ public class EmptyPartyFragment extends Fragment {
             public void onClick(View v) {
                 Helper.replaceFragment(
                         getActivity(),
-                        view.findViewById(R.id.emptyPartyLayout),
-                        R.id.emptyPartyLayoutContainer,
                         CreatePartyFragment.class,
                         null
                 );
@@ -42,8 +38,6 @@ public class EmptyPartyFragment extends Fragment {
             public void onClick(View v) {
                 Helper.replaceFragment(
                         getActivity(),
-                        view.findViewById(R.id.emptyPartyLayout),
-                        R.id.emptyPartyLayoutContainer,
                         JoinPartyFragment.class,
                         null
                 );

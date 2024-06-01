@@ -34,7 +34,7 @@ import responses.Response;
 public class PartyFragment extends Fragment {
     private EditText etPartyCode;
     private Button btnShowMenu, btnClipboard, btnCloseParty;
-    private LinearLayout secondaryLayout, participantsCardsLayout;
+    private LinearLayout participantsCardsLayout;
     private List<Participant> participants;
     private PersistentData persistentData;
     private Participant me;
@@ -137,8 +137,6 @@ public class PartyFragment extends Fragment {
                 args.putInt(persistentData.getResourcesString(R.string.participant_details_id_arg), participant.id);
                 Helper.replaceFragment(
                         getActivity(),
-                        secondaryLayout,
-                        R.id.LayoutPrincipal,
                         PartyDetailFragment.class,
                         args
                 );
@@ -150,7 +148,6 @@ public class PartyFragment extends Fragment {
     public void loadControls(View view) {
         this.etPartyCode = view.findViewById(R.id.etPartyCode);
         this.btnShowMenu = view.findViewById(R.id.btnMenu);
-        this.secondaryLayout = view.findViewById(R.id.LayoutSecundario);
         this.btnClipboard = view.findViewById(R.id.btnClipboard);
         this.participantsCardsLayout = view.findViewById(R.id.participantsCardsLayout);
         this.btnCloseParty = view.findViewById(R.id.btnCloseParty);
@@ -162,8 +159,6 @@ public class PartyFragment extends Fragment {
             public void onClick(View v) {
                 Helper.replaceFragment(
                         getActivity(),
-                        secondaryLayout,
-                        R.id.LayoutPrincipal,
                         PupusasListFragment.class,
                         null
                 );

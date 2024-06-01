@@ -12,9 +12,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import helpers.PersistentData;
 
@@ -32,18 +35,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int currentPartyId = persistentData.getCurrentPartyId();
-                Fragment fragment;
+
+                Map<Integer, Fragment> mainFragments = new HashMap<>();
+                mainFragments.put(R.id.navHome, currentPartyId == 0 ? new HomeFragment() : new GoToPartyFragment());
+                mainFragments.put(R.id.navParty, currentPartyId == 0 ? new EmptyPartyFragment() : new PartyFragment());
+                mainFragments.put(R.id.navProfile, new ProfileFragment());
 
                 int itemId = item.getItemId();
-                if (itemId == R.id.navHome){
-                    fragment = currentPartyId == 0 ? new HomeFragment() : new GoToPartyFragment();
-                    loadFragment(fragment, false);
-                } else if (itemId == R.id.navParty) {
-                    fragment = currentPartyId == 0 ? new EmptyPartyFragment() : new PartyFragment();
-                    loadFragment(fragment, false);
-                } else if (itemId == R.id.navProfile) {
-                    loadFragment(new ProfileFragment(), false);
-                }
+                loadFragment(mainFragments.get(itemId), false);
                 return true;
             }
         });
@@ -58,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         if (isAppInitialized){
-            fragmentTransaction.add(R.id.frameLayout, fragment);
+            fragmentTransaction.add(R.id.screenBody, fragment);
         }else {
-            fragmentTransaction.replace(R.id.frameLayout, fragment);
+            fragmentTransaction.replace(R.id.screenBody, fragment);
         }
         fragmentTransaction.commit();
     }

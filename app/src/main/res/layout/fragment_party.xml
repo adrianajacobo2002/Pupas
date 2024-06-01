@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="#FFFFFF"
     android:orientation="vertical"
+    android:padding="30dp"
     tools:context=".PartyFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -17,116 +18,107 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/LayoutSecundario"
+        <TextView
+            android:id="@+id/textView18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="40dp">
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/party_title"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outlinedTextField"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/party_title"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:layout_marginEnd="10dp">
 
-            <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPartyCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:fontFamily="@font/poppins"
+                    android:text="00000-00000"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnClipboard"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/outlinedTextField"
-                    android:layout_width="220dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etPartyCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:fontFamily="@font/poppins"
-                        android:text="00000-00000"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/btnClipboard"
-                    style="?attr/materialIconButtonFilledTonalStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/naranja"
-                    android:contentDescription=""
-                    app:icon="@drawable/duplicar"
-                    app:iconTint="@color/white" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/party_instruction"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnCloseParty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#AD0000"
-                    android:fontFamily="@font/poppins"
-                    android:text="@string/party_end_party_btn"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="12dp" />
-
-                <Button
-                    android:id="@+id/btnMenu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/naranja"
-                    android:fontFamily="@font/poppins"
-                    android:text="@string/party_show_prices_btn"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="12dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/participantsCardsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
+                android:backgroundTint="@color/naranja"
+                android:contentDescription=""
+                app:icon="@drawable/duplicar"
+                app:iconTint="@color/white" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/party_instruction"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCloseParty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#AD0000"
+                android:fontFamily="@font/poppins"
+                android:text="@string/party_end_party_btn"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
+
+            <Button
+                android:id="@+id/btnMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/naranja"
+                android:fontFamily="@font/poppins"
+                android:text="@string/party_show_prices_btn"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/participantsCardsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+
     </LinearLayout>
 </ScrollView>

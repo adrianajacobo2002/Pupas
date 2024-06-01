@@ -3,14 +3,11 @@ package sv.edu.catolica.pupas;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +19,6 @@ import models.User;
 public class HomeFragment extends Fragment {
     private TextView tvNameHome;
     private Button btngenerar, btnjoin;
-    private LinearLayout layoutSecundario;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,7 +29,6 @@ public class HomeFragment extends Fragment {
         this.tvNameHome = view.findViewById(R.id.tvNameHome);
         this.btngenerar = view.findViewById(R.id.btnGenerar);
         this.btnjoin = view.findViewById(R.id.btnJoin);
-        this.layoutSecundario = view.findViewById(R.id.layoutSecundario);
 
         PersistentData persistentData = new PersistentData(getActivity());
         try {
@@ -48,8 +43,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Helper.replaceFragment(
                         getActivity(),
-                        layoutSecundario,
-                        R.id.layoutPrincipal,
                         CreatePartyFragment.class,
                         null
                 );
@@ -61,8 +54,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Helper.replaceFragment(
                         getActivity(),
-                        layoutSecundario,
-                        R.id.layoutPrincipal,
                         JoinPartyFragment.class,
                         null
                 );
