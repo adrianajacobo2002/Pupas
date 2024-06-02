@@ -57,6 +57,7 @@ public class JoinPartyFragment extends Fragment {
 
     public void handleJoinPartyClick() {
         this.loaderDialog.start();
+        Helper.hideKeyboard(getActivity());
         try {
             String partyCode = this.etPartyCode.getText().toString();
             if (partyCode.isEmpty()) {

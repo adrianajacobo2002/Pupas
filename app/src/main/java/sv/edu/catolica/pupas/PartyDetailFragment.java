@@ -42,7 +42,7 @@ import responses.ParticipantDetailResponse;
 import responses.Response;
 
 public class PartyDetailFragment extends Fragment {
-    private int participantId;
+    private int participantId, partyIdForHistory;
     private TableLayout tblDetails;
     private Button btnNombreDisplay, btnDetailBack, btnAddBebida, btnDeleteBebida;
     private FloatingActionButton btnAddPupusas;
@@ -51,7 +51,6 @@ public class PartyDetailFragment extends Fragment {
     private LoaderDialog loaderDialog;
     private ParticipantDetailResponse participantDetailResponse;
     private Pupusa addPupusaDialogItem;
-    private boolean permissionsEstablished = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +60,7 @@ public class PartyDetailFragment extends Fragment {
         Activity activity = getActivity();
 
         this.participantId = getArguments().getInt("id");
+        this.partyIdForHistory = getArguments().getInt("partyId");
         this.persistentData = new PersistentData(activity);
         this.loaderDialog = new LoaderDialog(activity);
 
@@ -73,11 +73,18 @@ public class PartyDetailFragment extends Fragment {
 
     public void loadDetails() {
         this.loaderDialog.start();
-        int partyId = this.persistentData.getCurrentPartyId();
+        int partyIdArg = getArguments().getInt("partyId");
+        boolean detailsRequested = partyIdArg > 0;
+        int partyId = detailsRequested ? partyIdArg : this.persistentData.getCurrentPartyId();
         ParticipantDetail.fetch(partyId, this.participantId, new APICallback<Response<ParticipantDetailResponse>>() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -87,10 +94,8 @@ public class PartyDetailFragment extends Fragment {
                     public void run() {
                         participantDetailResponse = ResponseObject.body;
                         fillScreen();
-                        if (!permissionsEstablished)
-                            loadPermissions();
-                        else
-                            loaderDialog.dismiss();
+                        loadPermissions();
+                        loaderDialog.dismiss();
                     }
                 });
             }
@@ -174,7 +179,10 @@ public class PartyDetailFragment extends Fragment {
         this.btnDetailBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Helper.changeSelectedNav(getActivity(), R.id.navParty);
+                if (partyIdForHistory > 0)
+                    Helper.replaceFragment(getActivity(), PartyHistoryFragment.class, null);
+                else
+                    Helper.changeSelectedNav(getActivity(), R.id.navParty);
             }
         });
         this.btnAddBebida.setOnClickListener(new View.OnClickListener() {
@@ -294,6 +302,8 @@ public class PartyDetailFragment extends Fragment {
     }
 
     private boolean hasPermissions() {
+        if (this.partyIdForHistory > 0) return false;
+
         User loggedUser = null;
         try {
             loggedUser = this.persistentData.getObject("user", User.class);

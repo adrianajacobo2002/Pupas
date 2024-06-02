@@ -20,9 +20,13 @@ public class Participant {
     public String names;
     @SerializedName("last_names")
     public String lastNames;
-    public Double total;
+    public double total;
     @SerializedName("is_host")
     public boolean isHost;
+
+    public String getFullName() {
+        return String.format("%s %s", this.names, this.lastNames);
+    }
 
     public static void updateDrink(int partyId, int participantId, Double price, APICallback<Response> cb) {
         String uri = String.format("/parties/%d/participant/%d/drink", partyId, participantId);
