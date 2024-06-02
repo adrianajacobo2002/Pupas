@@ -122,4 +122,28 @@ public class Party {
             }
         });
     }
+
+    public static void updatePrices(int partyId, List<UpdatePrice> prices, APICallback<Response> cb) {
+        String uri = String.format("/parties/%d/prices", partyId);
+        API.patch(uri, prices, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                cb.onFailure(call, e);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
+                Response r = new Response(response.code() == 200);
+                if (!r.success) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        r.message = jsonObject.getString("message");
+                    } catch (JSONException e) {
+                        r.message = e.getMessage();
+                    }
+                }
+                cb.onResponse(r, call, response);
+            }
+        });
+    }
 }

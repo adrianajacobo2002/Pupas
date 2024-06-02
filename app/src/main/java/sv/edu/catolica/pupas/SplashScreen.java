@@ -67,7 +67,7 @@ public class SplashScreen extends AppCompatActivity {
 
                             populatePupusas();
                         } catch (JSONException e) {
-                            throw new RuntimeException(e);
+                            goToLoginRegisterScreen();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

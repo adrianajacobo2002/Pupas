@@ -9,16 +9,19 @@ import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.List;
 
+import models.CustomPrices;
 import models.Pupusa;
 import sv.edu.catolica.pupas.R;
 
 public class PersistentData {
     private SharedPreferences sp;
+    private CustomPrices customPrices;
     private Activity context;
 
     public PersistentData(Activity context) {
         this.sp = context.getSharedPreferences(context.getResources().getString(R.string.shared_preferences_file_name), Context.MODE_PRIVATE);
         this.context = context;
+        this.customPrices = new CustomPrices(context);
     }
 
     public String getResourcesString(int id) {
@@ -108,5 +111,18 @@ public class PersistentData {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public double getPupusaPriceInParty(int pupusaId, int partyId) {
+        double customPrice = this.customPrices.getCustomPrice(pupusaId, partyId);
+
+        if (customPrice == 0)
+            customPrice = this.getPupusaPrice(pupusaId);
+
+        return customPrice;
+    }
+
+    public boolean setPupusaCustomPrice(int pupusaId, int partyId, double price) {
+        return this.customPrices.savePrice(pupusaId, partyId, price);
     }
 }

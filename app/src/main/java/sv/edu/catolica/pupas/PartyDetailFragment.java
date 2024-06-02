@@ -255,7 +255,7 @@ public class PartyDetailFragment extends Fragment {
         int pupusaId = this.addPupusaDialogItem != null ? this.addPupusaDialogItem.id : 0;
         int partyId = this.persistentData.getCurrentPartyId();
         int participantId = getArguments().getInt("id");
-        Double price = persistentData.getPupusaPrice(pupusaId);
+        Double price = persistentData.getPupusaPriceInParty(pupusaId, partyId);
 
         ParticipantDetail.addPupusa(amount, partyId, pupusaId, participantId, price, new APICallback<Response>() {
             @Override

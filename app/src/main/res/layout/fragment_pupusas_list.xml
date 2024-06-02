@@ -58,6 +58,7 @@
 
 
             <TableLayout
+                android:id="@+id/tblPupusas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -97,35 +98,6 @@
                 <View
                     android:layout_height="2dip"
                     android:background="#FF909090" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:id="@+id/textView34"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/poppins"
-                        android:gravity="center"
-                        android:text="Queso"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <EditText
-                        android:id="@+id/editTextNumberDecimal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/poppins"
-                        android:gravity="center"
-                        android:inputType="numberDecimal"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </TableRow>
 
 
             </TableLayout>

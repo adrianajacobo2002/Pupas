@@ -157,10 +157,12 @@ public class PartyFragment extends Fragment {
         this.btnShowMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putBoolean("permitted", me.isHost);
                 Helper.replaceFragment(
                         getActivity(),
                         PupusasListFragment.class,
-                        null
+                        args
                 );
             }
         });
