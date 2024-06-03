@@ -6,52 +6,50 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import helpers.PersistentData;
+
+public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottomNavView);
-        frameLayout = findViewById(R.id.frameLayout);
+        this.bottomNavigationView = findViewById(R.id.bottomNavView);
 
+        PersistentData persistentData = new PersistentData(MainActivity.this);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int currentPartyId = persistentData.getCurrentPartyId();
+
+                Map<Integer, Fragment> mainFragments = new HashMap<>();
+                mainFragments.put(R.id.navHome, currentPartyId == 0 ? new HomeFragment() : new GoToPartyFragment());
+                mainFragments.put(R.id.navParty, currentPartyId == 0 ? new EmptyPartyFragment() : new PartyFragment());
+                mainFragments.put(R.id.navProfile, new ProfileFragment());
 
                 int itemId = item.getItemId();
-
-                if (itemId == R.id.navHome){
-                    loadFragment(new HomeFragment(), false);
-
-                } else if (itemId == R.id.navParty) {
-                    loadFragment(new PartyFragment(), false);
-
-                } else if (itemId == R.id.navProfile) {
-                    loadFragment(new ProfileFragment(), false);
-
-                }
-
-
-
+                loadFragment(mainFragments.get(itemId), false);
                 return true;
             }
         });
-        loadFragment(new HomeFragment(), true);
+
+        int currentPartyId = persistentData.getCurrentPartyId();
+        Fragment fragment = currentPartyId == 0 ? new HomeFragment() : new GoToPartyFragment();
+        loadFragment(fragment, true);
     }
 
     private void  loadFragment(Fragment fragment, boolean isAppInitialized){
@@ -59,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         if (isAppInitialized){
-            fragmentTransaction.add(R.id.frameLayout, fragment);
+            fragmentTransaction.add(R.id.screenBody, fragment);
         }else {
-            fragmentTransaction.replace(R.id.frameLayout, fragment);
+            fragmentTransaction.replace(R.id.screenBody, fragment);
         }
         fragmentTransaction.commit();
     }

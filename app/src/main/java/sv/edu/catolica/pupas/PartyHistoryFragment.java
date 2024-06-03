@@ -3,57 +3,97 @@ package sv.edu.catolica.pupas;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import helpers.Helper;
+import helpers.PersistentData;
+import models.Participant;
+import models.User;
+import responses.HistoryResponseItem;
 
 
 public class PartyHistoryFragment extends Fragment {
-
-    Button btnBack, btnShow;
-    LinearLayout layoutOcultar;
+    private HistoryResponseItem party;
+    private EditText etHistoryCode;
+    private TextView tvHistoryTotal, tvPartyName;
+    private Button btnBack;
+    private LinearLayout participantsContainer;
+    private PersistentData persistentData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_party_history, container, false);
+        View view = inflater.inflate(R.layout.fragment_party_history, container, false);
 
-        btnBack = vista.findViewById(R.id.btnBack);
+        this.persistentData = new PersistentData(getActivity());
+        this.loadControllers(view);
 
-        btnShow = vista.findViewById(R.id.btnShowDetail);
+        try {
+            this.party = this.persistentData.getObject("currentHistoryParty", HistoryResponseItem.class);
+            this.fillScreen();
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Error trying to fill data for this screen", Toast.LENGTH_SHORT).show();
+        }
 
-        layoutOcultar = vista.findViewById(R.id.Secundario);
+        return view;
+    }
 
+    private void fillScreen() throws Exception {
+        this.tvPartyName.setText(this.party.name);
+        this.etHistoryCode.setText(this.party.code);
+        this.tvHistoryTotal.setText(String.format("$%.2f", this.party.total));
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        for (int i = 0; i < this.party.participants.size(); i++) {
+            Participant p = this.party.participants.get(i);
+            String loggedUserName = this.persistentData.getObject("user", User.class).getFullName();
+            String participantName = loggedUserName.equals(p.getFullName())
+                    ? this.persistentData.getResourcesString(R.string.you)
+                    : p.getFullName();
+            ParticipantCard participantCard =
+                    new ParticipantCard(getContext(), participantName, p.total);
+            if (i == 0)
+                participantCard.makeHostCard();
+            participantCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle args = new Bundle();
+                    args.putInt(persistentData.getResourcesString(R.string.participant_details_id_arg), p.id);
+                    args.putInt("partyId", party.id);
+                    Helper.replaceFragment(
+                            getActivity(),
+                            PartyDetailFragment.class,
+                            args
+                    );
+                }
+            });
+            this.participantsContainer.addView(participantCard);
+        }
+    }
+
+    private void loadControllers(View view) {
+        this.btnBack = view.findViewById(R.id.btnBack);
+        this.etHistoryCode = view.findViewById(R.id.etHistoryCode);
+        this.tvHistoryTotal = view.findViewById(R.id.tvHistoryTotal);
+        this.tvPartyName = view.findViewById(R.id.tvHistoryPartyName);
+        this.participantsContainer = view.findViewById(R.id.historyParticipantsContainer);
+
+        this.loadListeners();
+    }
+
+    public void loadListeners() {
+        this.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Helper.replaceFragment(getActivity(), ProfileFragment.class, null);
             }
         });
-
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setReorderingAllowed(true);
-
-                // Replace whatever is in the fragment_container view with this fragment
-                transaction.replace(R.id.Principal, DetailHistoryFragment.class, null);
-
-                // Commit the transaction
-                transaction.commit();
-
-                layoutOcultar.setVisibility(View.GONE);
-            }
-        });
-
-        return vista;
     }
 }

@@ -1,14 +1,12 @@
 <resources>
     <string name="app_name">Pupas</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="crear_cuenta"><u>¿No tienes cuenta? ¡Crea una!</u></string>
-
-    <string name="title">Dialog Title</string>
-    <string name="supporting_text">This is the supporting text for the dialog.</string>
-    <string name="cancel">Cancel</string>
-    <string name="decline">Decline</string>
+    <string name="join_pupas_message">You are not part of Pupas!? Join now!</string>
+    <string name="cancel">Cancelar</string>
+    <string name="decline">Declinar</string>
     <string name="accept">Accept</string>
+    <string name="shared_preferences_file_name" translatable="false">Configs</string>
+    <string name="auth_token_sp_key" translatable="false">auth_token</string>
 
     <string-array name="pupusa_types">
         <item>Frijol con queso</item>
@@ -16,4 +14,54 @@
         <item>Revuelta</item>
         <item>Queso</item>
     </string-array>
+    <string name="incorrect_credentials">Incorrect credentials</string>
+    <string name="all_inputs_required">All inputs are required</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="email_hint">example@email.com</string>
+    <string name="user_sp_key" translatable="false">user</string>
+    <string name="create_party_title">Lets start the party!</string>
+    <string name="create_party_text">Set up your party and gather your friends to enjoy delicious pupusas.</string>
+    <string name="create_party_name_input_hint">Party name</string>
+    <string name="create_party_btn_text">Create party!</string>
+    <string name="create_party_name_required_alert">Name is required to create a party</string>
+    <string name="current_party_id_sp_key" translatable="false">current_party_id</string>
+    <string name="go_to_party_title">You\'re already in a party!</string>
+    <string name="go_to_party_text">Continue to enjoy with your buddies some delicious pupas</string>
+    <string name="go_to_party_btn_text">Go to the party!</string>
+    <string name="empty_party_title">You haven\'t created a party yet</string>
+    <string name="go_to_create_party_btn_text">Do you want to share pupas with your buddies?</string>
+    <string name="empty_party_join_party_btn_text">Join a party and enjoy amazing moments</string>
+    <string name="copy_code_message">Ready for some pupas? Join to my party with this code: ${code}</string>
+    <string name="party_code_clipboard_label" translatable="false">Pupas party code</string>
+    <string name="party_code_clipboard_success_message">Code ready to be shared!</string>
+    <string name="you">You</string>
+    <string name="party_title">Party code ready to taste!</string>
+    <string name="party_instruction">Copy and share your code with your friends and enjoy an unforgettable night of pupas.</string>
+    <string name="party_end_party_btn">End party</string>
+    <string name="party_show_prices_btn">Show prices</string>
+    <string name="participant_details_id_arg" translatable="false">id</string>
+    <string name="join_party_title">The party is about to begin!</string>
+    <string name="join_party_instructions">Enter the party code and join your friends to share authentic flavors and unforgettable moments.</string>
+    <string name="join_party_input_hint">Party code</string>
+    <string name="join_party_btn">Join the party with your friends</string>
+    <string name="join_party_error">Does not exist any party with this code</string>
+    <string name="home_hello">Hi there!</string>
+    <string name="home_are_you_ready">Ready to enjoy and share some delicious pupas with your friends?</string>
+    <string name="home_create_instructions">Generate a party code at Pupas and let them join for an unforgettable pupusera experience.</string>
+    <string name="home_join_instructions">Join the party by entering the code at Pupas and enjoy incredible moments.</string>
+    <string name="home_join_btn">Ready to join the party?</string>
+    <string name="detail_counter_amount">Amount</string>
+    <string name="add">Add</string>
+    <string name="choose_your_pupusa">Choose your pupusa</string>
+    <string name="save_changes">Save changes</string>
+    <string name="participant_details_drink_error">Error trying to update drink price</string>
+    <string name="participant_details_drink_price_exceeded">Don\'t you think is too much?</string>
+    <string name="participant_details_description">Explore your pupusera party\'s real-time order summary and discover the delicacies that are currently being enjoyed.</string>
+    <string name="total">Total</string>
+    <string name="participant_details_pupusa_type">Pupusa type</string>
+    <string name="participant_details_amount">Amount</string>
+    <string name="participant_details_drink">Drink</string>
+    <string name="participant_details_unit_price">Unit price</string>
 </resources>

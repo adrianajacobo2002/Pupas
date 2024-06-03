@@ -2,24 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentEmptyParty"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="40dp"
     tools:context=".EmptyPartyFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
+        android:id="@+id/emptyPartyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        android:padding="40dp">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Aún no has creado una fiesta"
+            android:text="@string/empty_party_title"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -31,30 +33,28 @@
             android:src="@drawable/emptyparty" />
 
         <Button
-            android:id="@+id/createParty"
+            android:id="@+id/btnEmptyPartyCreateParty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Button"
+            android:text="@string/go_to_create_party_btn_text"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:cornerRadius="12dp"
-            tools:text="¿Quieres compartir pupas con tus cheros?" />
+            tools:text="@string/go_to_create_party_btn_text" />
 
         <Button
-            android:id="@+id/joinParty"
+            android:id="@+id/btnEmptyPartyJoinParty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/amarillito"
             android:fontFamily="@font/poppins"
-            android:text="Button"
+            android:text="@string/empty_party_join_party_btn_text"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:cornerRadius="12dp"
-            tools:text="Únete a una party y disfruta de momentos increíbles." />
-
+            tools:text="@string/empty_party_join_party_btn_text" />
     </LinearLayout>
-
 
 
 </LinearLayout>

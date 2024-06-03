@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -22,18 +23,18 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/poppins"
-        android:text="Correo Electrónico"
+        android:text="@string/email_label"
         android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/etLoginEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/poppins"
-        android:hint="email@gmail.com"
+        android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColor="#000000"
@@ -47,17 +48,18 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/poppins"
-        android:text="Contraseña"
+        android:text="@string/password_label"
         android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/etLoginPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/poppins"
+        android:hint="*************"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColor="#000000"
@@ -71,30 +73,21 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="#F25C05"
         android:fontFamily="@font/poppins"
-        android:onClick="GoHome"
-        android:text="Iniciar Sesión"
+        android:text="@string/login_btn"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:textStyle="bold"
         app:cornerRadius="10dp" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:text="¿Olvidaste tu contraseña?"
-        android:textAlignment="center"
-        android:textColor="#737373"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvGoToRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/poppins"
-        android:text="¿No eres parte de Pupas? ¡Únete a la fiesta!"
+        android:text="@string/join_pupas_message"
         android:textAlignment="center"
-        android:textSize="12sp" />
+        android:textColor="@color/naranja"
+        android:textSize="12sp"
+        android:textStyle="bold" />
 </LinearLayout>

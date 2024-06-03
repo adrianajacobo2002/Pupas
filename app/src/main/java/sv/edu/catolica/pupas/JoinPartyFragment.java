@@ -2,63 +2,104 @@ package sv.edu.catolica.pupas;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link JoinPartyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import helpers.Helper;
+import helpers.LoaderDialog;
+import helpers.PersistentData;
+import interfaces.APICallback;
+import models.Party;
+import models.User;
+import okhttp3.Call;
+import responses.JoinPartyResponse;
+import responses.Response;
+
 public class JoinPartyFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public JoinPartyFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment JoinPartyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static JoinPartyFragment newInstance(String param1, String param2) {
-        JoinPartyFragment fragment = new JoinPartyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private TextInputEditText etPartyCode;
+    private Button btnJoinParty;
+    private PersistentData persistentData;
+    private LoaderDialog loaderDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_join_party, container, false);
+        View view = inflater.inflate(R.layout.fragment_join_party, container, false);
+
+        this.persistentData = new PersistentData(getActivity());
+        this.loaderDialog = new LoaderDialog(getActivity());
+
+        this.etPartyCode = view.findViewById(R.id.etPartyCode);
+        this.btnJoinParty = view.findViewById(R.id.btnJoinParty);
+        this.btnJoinParty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleJoinPartyClick();
+            }
+        });
+
+        return view;
+    }
+
+    public void handleJoinPartyClick() {
+        this.loaderDialog.start();
+        Helper.hideKeyboard(getActivity());
+        try {
+            String partyCode = this.etPartyCode.getText().toString();
+            if (partyCode.isEmpty()) {
+                Toast.makeText(getContext(), this.persistentData.getResourcesString(R.string.all_inputs_required), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int userId = this.persistentData.getObject("user", User.class).id;
+            Party.join(partyCode, userId, new APICallback<Response<JoinPartyResponse>>() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    loaderDialog.dismiss();
+                    Toast.makeText(getContext(), String.format("Error on API call: %s", e.getMessage()), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onResponse(Response<JoinPartyResponse> ResponseObject, @NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            loaderDialog.dismiss();
+                            boolean joined = ResponseObject.success;
+                            if (!joined) {
+                                try {
+                                    String message = response.code() == 404
+                                            ? persistentData.getResourcesString(R.string.join_party_error)
+                                            : new JSONObject(response.body().string()).getString("message");
+                                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                                    return;
+                                } catch (JSONException | IOException e) {
+                                    Toast.makeText(getContext(), String.format("Error on API call: %s", e.getMessage()), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            int partyId = ResponseObject.body.partyId;
+                            persistentData.setCurrentPartyId(partyId);
+                            Helper.changeSelectedNav(getActivity(), R.id.navParty);
+                        }
+                    });
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(getContext(), String.format("Error: %s", e.getMessage()), Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -8,7 +8,6 @@
     android:orientation="vertical"
     android:padding="30dp">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,12 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:hint="Tipo de pupusa"
+            android:hint="@string/choose_your_pupusa"
             app:counterTextColor="@color/black"
             app:helperTextTextColor="@color/black">
 
             <AutoCompleteTextView
-                android:id="@+id/auto_complete_txt"
+                android:id="@+id/dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
@@ -43,65 +42,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView37"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/poppins"
-                android:text="Cantidad"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <Button
-                style="?attr/materialIconButtonFilledTonalStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/naranja"
-                android:contentDescription=""
-                app:icon="@drawable/menos_pequeno"
-                app:itemIconTint="@drawable/bottom_nav_color"
-                app:iconTint="@color/white"/>
-
-            <EditText
-                android:id="@+id/editTextNumber2"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:minHeight="48dp"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
-
-            <Button
-                style="?attr/materialIconButtonFilledTonalStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/naranja"
-                android:contentDescription=""
-                app:icon="@drawable/plus_pequeno"
-                app:iconTint="@color/white" />
-        </LinearLayout>
-
+        <sv.edu.catolica.pupas.DetailCounter
+            android:id="@+id/detailCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:fontFamily="@font/poppins"
-        android:text="Agregar"
+        android:text="@string/add"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:cornerRadius="12dp" />
