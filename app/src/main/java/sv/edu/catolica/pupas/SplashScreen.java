@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import helpers.Helper;
 import helpers.PersistentData;
 import interfaces.APICallback;
 import models.API;
@@ -33,6 +34,11 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        if (!Helper.isNetworkAvailable(getApplicationContext())) {
+            goToNoConnection();
+            return;
+        }
 
         this.persistentData = new PersistentData(this);
         String authToken = this.persistentData.getAuthToken();
@@ -105,6 +111,12 @@ public class SplashScreen extends AppCompatActivity {
 
     public void goToMainScreen() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToNoConnection() {
+        Intent intent = new Intent(this, NoInternetActivity.class);
         startActivity(intent);
         finish();
     }
