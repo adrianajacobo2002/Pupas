@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import helpers.Helper;
 import helpers.LoaderDialog;
 import helpers.PersistentData;
 import interfaces.APICallback;
@@ -38,7 +39,7 @@ public class PupusasListFragment extends Fragment {
     private LoaderDialog loaderDialog;
     private PersistentData persistentData;
     private TableLayout tblPupusas;
-    private Button btnUpdatePrices;
+    private Button btnUpdatePrices, btnBack;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,6 +51,18 @@ public class PupusasListFragment extends Fragment {
         this.persistentData = new PersistentData(getActivity());
         this.loaderDialog = new LoaderDialog(getActivity());
         this.hasPermissions = getArguments().getBoolean("permitted");
+
+        this.btnBack = view.findViewById(R.id.btnBack);
+        this.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Helper.replaceFragment(
+                        getActivity(),
+                        PartyFragment.class,
+                        null
+                );
+            }
+        });
 
         try {
             Pupusa[] pupusas = this.persistentData.getObject("defaultPupusas", Pupusa[].class);

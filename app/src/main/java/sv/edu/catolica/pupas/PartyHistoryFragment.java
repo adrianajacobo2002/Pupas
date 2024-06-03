@@ -16,6 +16,7 @@ import android.widget.Toast;
 import helpers.Helper;
 import helpers.PersistentData;
 import models.Participant;
+import models.User;
 import responses.HistoryResponseItem;
 
 
@@ -45,15 +46,19 @@ public class PartyHistoryFragment extends Fragment {
         return view;
     }
 
-    private void fillScreen() {
+    private void fillScreen() throws Exception {
         this.tvPartyName.setText(this.party.name);
         this.etHistoryCode.setText(this.party.code);
         this.tvHistoryTotal.setText(String.format("$%.2f", this.party.total));
 
         for (int i = 0; i < this.party.participants.size(); i++) {
             Participant p = this.party.participants.get(i);
+            String loggedUserName = this.persistentData.getObject("user", User.class).getFullName();
+            String participantName = loggedUserName.equals(p.getFullName())
+                    ? this.persistentData.getResourcesString(R.string.you)
+                    : p.getFullName();
             ParticipantCard participantCard =
-                    new ParticipantCard(getContext(), p.getFullName(), p.total);
+                    new ParticipantCard(getContext(), participantName, p.total);
             if (i == 0)
                 participantCard.makeHostCard();
             participantCard.setOnClickListener(new View.OnClickListener() {
