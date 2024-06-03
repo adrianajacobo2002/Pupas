@@ -41,6 +41,7 @@ public class SplashScreen extends AppCompatActivity {
         }
 
         this.persistentData = new PersistentData(this);
+        this.persistentData.remove(this.persistentData.getResourcesString(R.string.current_party_id_sp_key));
         String authToken = this.persistentData.getAuthToken();
         if (authToken.isEmpty()) {
             goToLoginRegisterScreen();

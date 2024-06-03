@@ -56,14 +56,15 @@ public class JoinPartyFragment extends Fragment {
     }
 
     public void handleJoinPartyClick() {
-        this.loaderDialog.start();
-        Helper.hideKeyboard(getActivity());
         try {
             String partyCode = this.etPartyCode.getText().toString();
             if (partyCode.isEmpty()) {
                 Toast.makeText(getContext(), this.persistentData.getResourcesString(R.string.all_inputs_required), Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            this.loaderDialog.start();
+            Helper.hideKeyboard(getActivity());
             int userId = this.persistentData.getObject("user", User.class).id;
             Party.join(partyCode, userId, new APICallback<Response<JoinPartyResponse>>() {
                 @Override

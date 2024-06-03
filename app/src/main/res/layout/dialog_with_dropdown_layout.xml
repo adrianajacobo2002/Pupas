@@ -22,7 +22,8 @@
             android:background="@color/white"
             android:hint="@string/choose_your_pupusa"
             app:counterTextColor="@color/black"
-            app:helperTextTextColor="@color/black">
+            app:helperTextTextColor="@color/black"
+            android:theme="@style/Theme.Pupas">
 
             <AutoCompleteTextView
                 android:id="@+id/dropdown"

@@ -164,7 +164,7 @@ public class PupusasListFragment extends Fragment {
 
         EditText editText = new EditText(getActivity());
         editText.setGravity(Gravity.CENTER);
-        editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         editText.setTextColor(getResources().getColor(R.color.black, null));
         editText.setTextSize(14);
