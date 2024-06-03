@@ -25,6 +25,8 @@ import helpers.Helper;
 import helpers.LoaderDialog;
 import helpers.PersistentData;
 import interfaces.APICallback;
+import models.CustomPrice;
+import models.CustomPrices;
 import models.Participant;
 import models.Party;
 import models.User;
@@ -39,6 +41,7 @@ public class PartyFragment extends Fragment {
     private PersistentData persistentData;
     private Participant me;
     private LoaderDialog loaderDialog;
+    private CustomPrices customPricesDB;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +50,7 @@ public class PartyFragment extends Fragment {
 
         this.persistentData = new PersistentData(getActivity());
         this.loaderDialog = new LoaderDialog(getActivity());
+        this.customPricesDB = new CustomPrices(getContext());
 
         this.loadControls(view);
         this.loadListeners();
@@ -90,6 +94,7 @@ public class PartyFragment extends Fragment {
 
                             etPartyCode.setText(party.code);
                             participants = ResponseObject.body.participants;
+                            saveCustomPrices(party.customPrices);
                             loadParticipants();
                         }
                     });
@@ -101,7 +106,14 @@ public class PartyFragment extends Fragment {
         }
     }
 
-    public void loadParticipants() {
+    private void saveCustomPrices(List<CustomPrice> prices) {
+        int partyId = this.persistentData.getCurrentPartyId();
+        for (CustomPrice cp : prices) {
+            this.customPricesDB.savePrice(cp.pupsaId, partyId, cp.price);
+        }
+    }
+
+    private void loadParticipants() {
         try {
             User loggedUser = this.persistentData.getObject("user", User.class);
             for (int i = 0; i < this.participants.size(); i++) {
@@ -229,8 +241,10 @@ public class PartyFragment extends Fragment {
     }
 
     private void permissions() {
-        if (!this.me.isHost)
+        if (!this.me.isHost) {
             this.btnCloseParty.setVisibility(View.GONE);
+            this.btnShowMenu.setVisibility(View.GONE);
+        }
     }
 
     public void closeLocalParty() {

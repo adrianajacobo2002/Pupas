@@ -25,6 +25,7 @@ public class Party {
     public String code;
     public PARTY_STATES state;
     public List<Participant> participants;
+    public List<CustomPrice> customPrices;
 
     public Party(int id) {
         this.id = id;

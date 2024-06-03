@@ -50,4 +50,5 @@
     <string name="participant_details_pupusa_type">Tipo de pupusa</string>
     <string name="participant_details_amount">Cantidad</string>
     <string name="participant_details_drink">Bebida</string>
+    <string name="participant_details_unit_price">Precio unitario</string>
 </resources>

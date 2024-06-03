@@ -63,4 +63,5 @@
     <string name="participant_details_pupusa_type">Pupusa type</string>
     <string name="participant_details_amount">Amount</string>
     <string name="participant_details_drink">Drink</string>
+    <string name="participant_details_unit_price">Unit price</string>
 </resources>

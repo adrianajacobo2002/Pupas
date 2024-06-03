@@ -114,6 +114,7 @@ public class PartyDetailFragment extends Fragment {
             List<View> columns = new ArrayList<>();
             columns.add(makeColumn(pupusa.type));
             columns.add(makeColumn(String.valueOf(pupusa.amount)));
+            columns.add(makeColumn(String.format("$%.2f", pupusa.total / pupusa.amount)));
             columns.add(makeColumn(String.format("$%.2f", pupusa.total)));
             EditDetailBtn btnEdit = new EditDetailBtn(getActivity());
             btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -222,8 +223,11 @@ public class PartyDetailFragment extends Fragment {
             // Populating dropdown
             Pupusa[] pupusasArr = this.persistentData.getObject("defaultPupusas", Pupusa[].class);
             List<String> pupusas = new ArrayList<>();
-            for (Pupusa p : pupusasArr)
-                pupusas.add(p.name);
+            for (Pupusa p : pupusasArr) {
+                int partId = this.persistentData.getCurrentPartyId();
+                double price = this.persistentData.getPupusaPriceInParty(p.id, partId);
+                pupusas.add(String.format("%s - $%.2f", p.name, price));
+            }
             dialogView.setDropdownValues(pupusas);
             dialogView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -370,7 +374,8 @@ public class PartyDetailFragment extends Fragment {
                                     return;
                                 }
 
-                                if (!price.toString().equals(priceFixed.toString())) {
+                                String etDrinkPriceValue = etDrinkPrice.getText().toString();
+                                if (!priceFixed.toString().equals(etDrinkPriceValue)) {
                                     etDrinkPrice.setText(priceFixed.toString());
                                 }
                             }

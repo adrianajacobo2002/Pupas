@@ -79,7 +79,14 @@ public class LoginActivity extends AppCompatActivity {
         API.post("/users/login", body, new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loaderDialog.dismiss();
+                        String message = e.getMessage();
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
