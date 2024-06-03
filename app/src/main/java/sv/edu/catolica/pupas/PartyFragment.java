@@ -109,7 +109,7 @@ public class PartyFragment extends Fragment {
     private void saveCustomPrices(List<CustomPrice> prices) {
         int partyId = this.persistentData.getCurrentPartyId();
         for (CustomPrice cp : prices) {
-            this.customPricesDB.savePrice(cp.pupsaId, partyId, cp.price);
+            this.customPricesDB.savePrice(cp.pupusaId, partyId, cp.price);
         }
     }
 
@@ -243,7 +243,6 @@ public class PartyFragment extends Fragment {
     private void permissions() {
         if (!this.me.isHost) {
             this.btnCloseParty.setVisibility(View.GONE);
-            this.btnShowMenu.setVisibility(View.GONE);
         }
     }
 
