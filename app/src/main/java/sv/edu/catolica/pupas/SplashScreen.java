@@ -53,7 +53,12 @@ public class SplashScreen extends AppCompatActivity {
         API.post("/users/login-by-token", body, new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        goToLoginRegisterScreen();
+                    }
+                });
             }
 
             @Override

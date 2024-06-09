@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.Locale;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -17,7 +18,7 @@ import okhttp3.RequestBody;
 public class API {
     private static final OkHttpClient client = new OkHttpClient();
     private static final MediaType ApplicationJSONType = MediaType.parse("application/json");
-    private static final String host = "https://pupas-api.onrender.com";
+    private static final String host = "https://pupas-api-production.up.railway.app";
 
     private API() {}
 
@@ -33,8 +34,10 @@ public class API {
     }
 
     public static void get(String uri, Callback cb) {
+        String lang = Locale.getDefault().getLanguage();
         Request r = new Request.Builder()
                 .url(host + uri)
+                .addHeader("Accept-Language", lang)
                 .build();
         Call call = client.newCall(r);
         call.enqueue(cb);
