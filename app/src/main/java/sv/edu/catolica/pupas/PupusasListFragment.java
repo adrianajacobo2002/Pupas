@@ -123,7 +123,7 @@ public class PupusasListFragment extends Fragment {
 
                         loaderDialog.dismiss();
                         btnUpdatePrices.setEnabled(true);
-                        Toast.makeText(getActivity(), "Prices saved correctly", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), persistentData.getResourcesString(R.string.pupusas_list_updated), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

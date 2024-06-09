@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
-        android:text="No posees conexión a internet"
+        android:text="@string/no_internet"
         android:textAlignment="center"
         android:textColor="#736B6B"
         android:textSize="16sp"

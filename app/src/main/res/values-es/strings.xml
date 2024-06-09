@@ -51,4 +51,18 @@
     <string name="participant_details_amount">Cantidad</string>
     <string name="participant_details_drink">Bebida</string>
     <string name="participant_details_unit_price">Precio unitario</string>
+    <string name="profile_recent_parties">Parties recientes</string>
+    <string name="party_history_description">Revisa tu fiesta pasada y recuerda los mejores momentos con tus cheros.</string>
+    <string name="pupusas_list_description">Selecciona tus pupusas preferidas, disfruta de cada bocado y gestiona precios.</string>
+    <string name="pupusas_list_btn">Actualizar precios</string>
+    <string name="pupusas_list_updated">Precio actualizados correctamente</string>
+    <string name="no_internet">No tienes conexión a internet</string>
+    <string name="register_btn">¡Regístrate!</string>
+    <string name="start_go_to_register">Registrarse</string>
+    <string name="start_description">Saborea y comparte sin complicaciones. ¡Únete ahora!</string>
+    <string name="start_title">Bienvenido a Pupas</string>
+    <string name="name">Nombre</string>
+    <string name="last_names">Apellidos</string>
+    <string name="register_question">¿Ya eres #PupasLover?</string>
+    <string name="register_log_in_message">¡Inicia sesión!</string>
 </resources>

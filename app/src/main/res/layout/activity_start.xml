@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins"
-        android:text="Bienvenido a Pupas"
+        android:text="@string/start_title"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/poppins"
-        android:text=" Saborea y comparte sin complicaciones. ¡Únete ahora!"
+        android:text="@string/start_description"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
@@ -44,7 +44,7 @@
         android:fontFamily="@font/poppins"
         android:gravity="center|center_horizontal|center_vertical"
         android:onClick="StartLogin"
-        android:text="Iniciar Sesión"
+        android:text="@string/login_btn"
         android:textColor="#000000"
         android:textSize="15sp"
         app:cornerRadius="12dp" />
@@ -59,7 +59,7 @@
         android:fontFamily="@font/poppins"
         android:gravity="center|center_horizontal|center_vertical"
         android:onClick="StartRegister"
-        android:text="Registrarse"
+        android:text="@string/start_go_to_register"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:cornerRadius="12dp" />

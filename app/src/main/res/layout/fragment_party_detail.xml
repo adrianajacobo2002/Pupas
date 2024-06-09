@@ -33,15 +33,6 @@
                 app:iconTint="@color/white" />
 
 
-            <Button
-                android:id="@+id/btnRefresh"
-                style="?attr/materialIconButtonFilledStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/amarillito"
-                app:cornerRadius="12dp"
-                app:icon="@drawable/gira_a_la_derecha"
-                app:iconTint="@color/white" />
         </LinearLayout>
 
 

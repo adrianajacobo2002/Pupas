@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins"
-                android:text="Selecciona tus pupusas preferidas, disfruta de cada bocado y gestiona precios."
+                android:text="@string/pupusas_list_description"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -77,7 +77,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/poppins"
                         android:gravity="center"
-                        android:text="Tipo Pupusa"
+                        android:text="Pupusa"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -88,7 +88,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/poppins"
                         android:gravity="center"
-                        android:text="Precio"
+                        android:text="@string/participant_details_unit_price"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins"
-                android:text="Actualizar Precios"
+                android:text="@string/pupusas_list_btn"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="14sp"

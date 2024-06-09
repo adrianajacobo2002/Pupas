@@ -64,4 +64,18 @@
     <string name="participant_details_amount">Amount</string>
     <string name="participant_details_drink">Drink</string>
     <string name="participant_details_unit_price">Unit price</string>
+    <string name="profile_recent_parties">Recent Parties</string>
+    <string name="party_history_description">Review your past party and remember the best moments with your friends.</string>
+    <string name="pupusas_list_description">Select your favorite pupusas, enjoy every bite and manage prices.</string>
+    <string name="pupusas_list_btn">Update prices</string>
+    <string name="pupusas_list_updated">Prices updated successfully</string>
+    <string name="no_internet">You\'re not connected to internet</string>
+    <string name="register_btn">Register!</string>
+    <string name="start_go_to_register">Register</string>
+    <string name="start_description">Taste and share without complications, join now!</string>
+    <string name="start_title">Welcome to Pupas</string>
+    <string name="name">Name</string>
+    <string name="last_names">Last names</string>
+    <string name="register_question">Are you already a #PupasLover?</string>
+    <string name="register_log_in_message">Log in!</string>
 </resources>

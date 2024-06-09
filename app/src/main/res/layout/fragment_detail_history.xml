@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
-            android:text="Explora el resumen de pedidos de tu party pupusera y descubre las delicias que disfrutaron"
+            android:text="@string/profile_recent_parties"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="12sp" />

@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Revisa tu fiesta pasada y recuerda los mejores momentos con tus cheros."
+            android:text="@string/party_history_description"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
